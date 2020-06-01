@@ -2,7 +2,13 @@
 {
     public class PerformanceConverter : IConverter
     {
+        public byte[] GetAsciiBytes(string s) => throw new System.NotImplementedException();
+
         public string GetAsciiString(byte[] bytes) => throw new System.NotImplementedException();
+
+        public byte[] GetBase64Bytes(string s) => throw new System.NotImplementedException();
+
+        public string GetBase64String(byte[] bytes) => throw new System.NotImplementedException();
 
         public decimal GetBCD(byte[] bytes) => throw new System.NotImplementedException();
 
@@ -52,7 +58,11 @@
 
         public ushort GetUShort(byte[] bytes) => throw new System.NotImplementedException();
 
+        public byte[] GetUtf32Bytes(string s) => throw new System.NotImplementedException();
+
         public string GetUtf32String(byte[] bytes) => throw new System.NotImplementedException();
+
+        public byte[] GetUtf8Bytes(string s) => throw new System.NotImplementedException();
 
         public string GetUtf8String(byte[] bytes) => throw new System.NotImplementedException();
 

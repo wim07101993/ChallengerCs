@@ -4,7 +4,13 @@ namespace DataConverter.Core.Converters
 {
     public class ObfuscatedConverter : IConverter
     {
+        public byte[] GetAsciiBytes(string s) => throw new NotImplementedException();
+
         public string GetAsciiString(byte[] bytes) => throw new NotImplementedException();
+
+        public byte[] GetBase64Bytes(string s) => throw new NotImplementedException();
+
+        public string GetBase64String(byte[] bytes) => throw new NotImplementedException();
 
         public decimal GetBCD(byte[] bytes) => throw new NotImplementedException();
 
@@ -56,7 +62,11 @@ namespace DataConverter.Core.Converters
 
         public ushort GetUShort(byte[] bytes) => throw new NotImplementedException();
 
+        public byte[] GetUtf32Bytes(string s) => throw new NotImplementedException();
+
         public string GetUtf32String(byte[] bytes) => throw new NotImplementedException();
+
+        public byte[] GetUtf8Bytes(string s) => throw new NotImplementedException();
 
         public string GetUtf8String(byte[] bytes) => throw new NotImplementedException();
 

@@ -42,7 +42,7 @@
         string GetAsciiString(byte[] bytes);
 
         /// <summary>
-        ///     Converts a <see cref="byte[]" /> to <see cref="string" /> using UTF32.
+        ///     Converts a <see cref="byte[]" /> to <see cref="string" /> using UTF8.
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>The UTF8 string representing the bytes.</returns>
@@ -56,10 +56,18 @@
         string GetUtf32String(byte[] bytes);
 
         /// <summary>
+        ///     Converts a <see cref="byte[]" /> to Base64 <see cref="string" />.
+        /// </summary>
+        /// <param name="bytes">The bytes to convert.</param>
+        /// <returns>The Base64 string representing the bytes.</returns>
+        string GetBase64String(byte[] bytes);
+
+        /// <summary>
         ///     Converts a <see cref="byte[]" /> to a <see cref="ushort" />.
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="ushort" /> that the bytes represent.</returns>
+        /// <exception cref="System.ArgumentException">The array is to large for a <see cref="ushort"/> (16bit).</exception>
         ushort GetUShort(byte[] bytes);
 
         /// <summary>
@@ -67,6 +75,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="uint" /> that the bytes represent.</returns>
+        /// <exception cref="System.ArgumentException">The array is to large for a <see cref="uint"/> (32bit).</exception>
         uint GetUInt(byte[] bytes);
 
         /// <summary>
@@ -74,6 +83,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="ulong" /> that the bytes represent.</returns>
+        /// <exception cref="System.ArgumentException">The array is to large for a <see cref="ulong"/> (64bit).</exception>
         ulong GetULong(byte[] bytes);
 
         /// <summary>
@@ -81,6 +91,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="short" /> that the bytes represent.</returns>
+        /// <exception cref="System.ArgumentException">The array is to large for a <see cref="short"/> (16bit).</exception>
         short GetShort(byte[] bytes);
 
         /// <summary>
@@ -88,6 +99,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="int" /> that the bytes represent.</returns>
+        /// <exception cref="System.ArgumentException">The array is to large for a <see cref="int"/> (32bit).</exception>
         int GetInt(byte[] bytes);
 
         /// <summary>
@@ -95,6 +107,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="long" /> that the bytes represent.</returns>
+        /// <exception cref="System.ArgumentException">The array is to large for a <see cref="long"/> (64bit).</exception>
         long GetLong(byte[] bytes);
 
         /// <summary>
@@ -102,6 +115,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="float" /> that the bytes represent.</returns>
+        /// <exception cref="System.ArgumentException">The array is to large for a <see cref="float"/> (32bit).</exception>
         float GetFloat(byte[] bytes);
 
         /// <summary>
@@ -109,6 +123,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="double" /> that the bytes represent.</returns>
+        /// <exception cref="System.ArgumentException">The array is to large for a <see cref="double"/> (64bit).</exception>
         double GetDoulbe(byte[] bytes);
 
         /// <summary>
@@ -116,6 +131,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="decimal" /> that the bytes represent.</returns>
+        /// <exception cref="System.ArgumentException">The array is to large for a <see cref="decimal"/> (128bit).</exception>
         decimal GetDecimal(byte[] bytes);
 
         /// <summary>
@@ -204,27 +220,59 @@
         byte[] ParseBinaryString(string s);
 
         /// <summary>
-        ///     Converts a octal <see cref="string" /> (117-113-...) to its representing
-        ///     <see cref="byte[]" />.
+        ///     Converts a octal <see cref="string" /> (117-113-...) to its representing <see
+        ///     cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
         byte[] ParseOctalString(string s);
 
         /// <summary>
-        ///     Converts a decimal <see cref="string" /> (79-75-...) to its representing
-        ///     <see cref="byte[]" />.
+        ///     Converts a decimal <see cref="string" /> (79-75-...) to its representing <see
+        ///     cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
         byte[] ParseDecimalString(string s);
 
         /// <summary>
-        ///     Converts a hexadecimal <see cref="string" /> (4F-4B-...) to its representing
-        ///     <see cref="byte[]" />.
+        ///     Converts a hexadecimal <see cref="string" /> (4F-4B-...) to its representing <see
+        ///     cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
         byte[] ParseHexadecimalString(string s);
+
+        /// <summary>
+        ///     Converts a ASCII <see cref="string" /> to its representing <see
+        ///     cref="byte[]" />.
+        /// </summary>
+        /// <param name="s">The <see cref="string" /> to convert.</param>
+        /// <returns>The bytes representing the <see cref="string" /></returns>
+        byte[] GetAsciiBytes(string s);
+
+        /// <summary>
+        ///     Converts a UTF8 <see cref="string" /> to its representing <see
+        ///     cref="byte[]" />.
+        /// </summary>
+        /// <param name="s">The <see cref="string" /> to convert.</param>
+        /// <returns>The bytes representing the <see cref="string" /></returns>
+        byte[] GetUtf8Bytes(string s);
+
+        /// <summary>
+        ///     Converts a UTF32 <see cref="string" /> to its representing <see
+        ///     cref="byte[]" />.
+        /// </summary>
+        /// <param name="s">The <see cref="string" /> to convert.</param>
+        /// <returns>The bytes representing the <see cref="string" /></returns>
+        byte[] GetUtf32Bytes(string s);
+
+        /// <summary>
+        ///     Converts a Base64 <see cref="string" /> to its representing <see
+        ///     cref="byte[]" />.
+        /// </summary>
+        /// <param name="s">The <see cref="string" /> to convert.</param>
+        /// <returns>The bytes representing the <see cref="string" /></returns>
+        byte[] GetBase64Bytes(string s);
     }
 }
