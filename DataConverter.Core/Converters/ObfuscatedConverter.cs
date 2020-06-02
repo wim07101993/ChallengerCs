@@ -8,10 +8,6 @@ namespace DataConverter.Core.Converters
 
         public string GetAsciiString(byte[] bytes) => throw new NotImplementedException();
 
-        public byte[] GetBase64Bytes(string s) => throw new NotImplementedException();
-
-        public string GetBase64String(byte[] bytes) => throw new NotImplementedException();
-
         public decimal GetBCD(byte[] bytes) => throw new NotImplementedException();
 
         public byte[] GetBCDBytes(decimal d) => throw new NotImplementedException();

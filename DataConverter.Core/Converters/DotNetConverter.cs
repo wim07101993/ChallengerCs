@@ -6,10 +6,6 @@
 
         public string GetAsciiString(byte[] bytes) => throw new System.NotImplementedException();
 
-        public byte[] GetBase64Bytes(string s) => throw new System.NotImplementedException();
-
-        public string GetBase64String(byte[] bytes) => throw new System.NotImplementedException();
-
         public decimal GetBCD(byte[] bytes) => throw new System.NotImplementedException();
 
         public byte[] GetBCDBytes(decimal d) => throw new System.NotImplementedException();

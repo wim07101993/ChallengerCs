@@ -16,4 +16,8 @@
     <ProjectReference Include="..\DataConverter.Core\DataConverter.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\" />
+  </ItemGroup>
+
 </Project>
