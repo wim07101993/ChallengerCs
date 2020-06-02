@@ -34,7 +34,7 @@
 
         public string GetDecimalString(byte[] bytes) => throw new System.NotImplementedException();
 
-        public double GetDoulbe(byte[] bytes) => throw new System.NotImplementedException();
+        public double GetDouble(byte[] bytes) => throw new System.NotImplementedException();
 
         public float GetFloat(byte[] bytes) => throw new System.NotImplementedException();
 
@@ -66,7 +66,7 @@
 
         public byte[] ParseDecimalString(string s) => throw new System.NotImplementedException();
 
-        public byte[] ParseHexadecimalString(string s) => throw new System.NotImplementedException();
+        public byte[] ParseHexString(string s) => throw new System.NotImplementedException();
 
         public byte[] ParseOctalString(string s) => throw new System.NotImplementedException();
     }

@@ -2,7 +2,7 @@
 
 namespace DataConverter.Core.TestData
 {
-    public class Data
+    public class MockData
     {
         public Example Zero => new Example
         {

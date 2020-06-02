@@ -38,7 +38,7 @@ namespace DataConverter.Core.Converters
 
         public string GetDecimalString(byte[] bytes) => throw new NotImplementedException();
 
-        public double GetDoulbe(byte[] bytes) => throw new NotImplementedException();
+        public double GetDouble(byte[] bytes) => throw new NotImplementedException();
 
         public float GetFloat(byte[] bytes) => throw new NotImplementedException();
 
@@ -70,7 +70,7 @@ namespace DataConverter.Core.Converters
 
         public byte[] ParseDecimalString(string s) => throw new NotImplementedException();
 
-        public byte[] ParseHexadecimalString(string s) => throw new NotImplementedException();
+        public byte[] ParseHexString(string s) => throw new NotImplementedException();
 
         public byte[] ParseOctalString(string s) => throw new NotImplementedException();
     }

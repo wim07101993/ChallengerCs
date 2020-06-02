@@ -109,7 +109,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="double" /> that the bytes represent.</returns>
-        double GetDoulbe(byte[] bytes);
+        double GetDouble(byte[] bytes);
 
         /// <summary>
         ///     Converts a <see cref="byte[]" /> to a <see cref="decimal" />.
@@ -117,14 +117,6 @@
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="decimal" /> that the bytes represent.</returns>
         decimal GetDecimal(byte[] bytes);
-
-        /// <summary>
-        ///     Converts a <see cref="byte[]" /> to a <see cref="decimal" />.
-        /// </summary>
-        /// <param name="bytes">The bytes to convert</param>
-        /// <returns>The <see cref="decimal" /> that the bytes represent.</returns>
-        /// <exception cref="ArgumentException">When the bytes contain values that cannot exist in a BCD.</exception>
-        decimal GetBCD(byte[] bytes);
 
         /// <summary>
         ///     Converts a <see cref="ushort" /> to its representing <see cref="byte[]" />.
@@ -190,13 +182,6 @@
         byte[] GetBytes(decimal d);
 
         /// <summary>
-        ///     Converts a <see cref="decimal" /> to its representing <see cref="byte[]" />.
-        /// </summary>
-        /// <param name="s">The <see cref="decimal" /> to convert.</param>
-        /// <returns>The bytes representing the <see cref="decimal" /></returns>
-        byte[] GetBCDBytes(decimal d);
-
-        /// <summary>
         ///     Converts a binary <see cref="string" /> (1001111-1001011-...) to its representing
         ///     <see cref="byte[]" />.
         /// </summary>
@@ -226,7 +211,7 @@
         /// </summary>
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
-        byte[] ParseHexadecimalString(string s);
+        byte[] ParseHexString(string s);
 
         /// <summary>
         ///     Converts a ASCII <see cref="string" /> to its representing <see
