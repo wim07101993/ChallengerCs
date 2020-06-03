@@ -1,0 +1,16 @@
+﻿<UserControl
+    x:Class="DataConverter.Wpf.Views.ConverterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="{x:Type TextBox}">
+            <Setter Property="MinWidth" Value="150" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignCardGroupBox}" TargetType="{x:Type GroupBox}" />
+    </UserControl.Resources>
+
+    <Grid>
+        <TextBlock>Converter</TextBlock>
+    </Grid>
+</UserControl>
