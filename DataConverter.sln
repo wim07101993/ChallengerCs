@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter.Core.Benchmar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter.Core.Tests", "DataConverter.Core.Tests\DataConverter.Core.Tests.csproj", "{36671097-7B92-4F58-9A72-39500310E730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Core.TestData", "DataConverter.Core.TestData\DataConverter.Core.TestData.csproj", "{2F90FD56-63CC-4ADC-AAF0-83C6826F9389}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter.Core.TestData", "DataConverter.Core.TestData\DataConverter.Core.TestData.csproj", "{2F90FD56-63CC-4ADC-AAF0-83C6826F9389}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,8 +28,7 @@ Global
 		{CF2E09BF-5118-43F5-8C55-2D6BBE97192A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF2E09BF-5118-43F5-8C55-2D6BBE97192A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF2E09BF-5118-43F5-8C55-2D6BBE97192A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A8923AB-CE2E-490D-ACFB-B1FD675FBD73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A8923AB-CE2E-490D-ACFB-B1FD675FBD73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8923AB-CE2E-490D-ACFB-B1FD675FBD73}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{2A8923AB-CE2E-490D-ACFB-B1FD675FBD73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A8923AB-CE2E-490D-ACFB-B1FD675FBD73}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36671097-7B92-4F58-9A72-39500310E730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

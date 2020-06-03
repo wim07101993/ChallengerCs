@@ -5,9 +5,8 @@ using NUnit.Framework;
 
 namespace DataConverter.Core.Tests.Tests
 {
-    [TestFixture]
-    public partial class ConverterTests
+    public abstract partial class ConverterTests
     {
-        private IConverter Converter => ConverterFactory.Instance.GetConverter();
+        protected abstract IConverter Converter { get; }
     }
 }

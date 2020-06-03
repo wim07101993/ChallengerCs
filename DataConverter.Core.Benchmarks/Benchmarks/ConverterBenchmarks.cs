@@ -6,19 +6,51 @@ using DataConverter.Core.TestData;
 
 namespace DataConverter.Core.Benchmarks.Benchmarks
 {
-    [SimpleJob(RuntimeMoniker.Net472, baseline: true)]
-    [SimpleJob(RuntimeMoniker.NetCoreApp30, baseline: true)]
-    [SimpleJob(RuntimeMoniker.CoreRt30, baseline: true)]
-    [SimpleJob(RuntimeMoniker.Mono, baseline: true)]
+    /// <summary>Benchmark class that benchmarks all <see cref="IConverter" /> methods.</summary>
+    /// <remarks>
+    ///     By (un)commenting simple jobs, it is possible to modify on which runtimes the benchmark
+    ///     should be done.
+    /// </remarks>
+    [SimpleJob(RuntimeMoniker.Net48, baseline: true)]
+    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
+    //[SimpleJob(RuntimeMoniker.NetCoreApp50)]
+    [SimpleJob(RuntimeMoniker.CoreRt31)]
+    //[SimpleJob(RuntimeMoniker.CoreRt50)]
+    //[SimpleJob(RuntimeMoniker.Mono)]
     [RPlotExporter]
-    public class ConverterBenchmarks
+    public abstract class ConverterBenchmarks
     {
-        private readonly IConverter _converter = ConverterFactory.Instance.GetConverter();
+        /// <summary>List of converters to benchmark.</summary>
+        /// <remarks>
+        ///     By adding or removing items from this list, it is possible to modify which
+        ///     converters the project should benchmark. When editing this list, please make sure
+        ///     the <see cref="ParamsAttribute" /> of the <see cref="ConverterIndex" /> property is
+        ///     also updated.
+        /// </remarks>
+        private static readonly IConverter[] converters = new IConverter[]
+        {
+            new DotNetConverter(),
+            new LinqConverter(),
+            new PerformanceConverter(),
+            new ObfuscatedConverter()
+        };
+
+        /// <summary>The mock data that will be used to run the benchmark.</summary>
         private readonly MockData _data = new MockData();
 
+        /// <summary>Amount of runs that should be done.</summary>
         [Params(1000, 10000)]
         public int n;
 
+        /// <summary>
+        ///     Index of the converter to use. For each value in the <see cref="ParamsAttribute" />,
+        ///     the benchmark will run.
+        ///     <para>The index corresponds to the <see cref="converters" /> field.</para>
+        /// </summary>
+        [Params(0, 1, 2, 3)]
+        public int ConverterIndex { get; set; }
+
+        /// <summary>Initializes the benchmark.</summary>
         [GlobalSetup]
         public void Setup()
         {
@@ -57,6 +89,10 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
             _decimal = _data.Decimal.Decimal;
         }
 
+        /// <summary>
+        ///     To make the benchmark faster comment methods out that should not be benchmarked.
+        /// </summary>
+
         #region from bytes
 
         private byte[] _binaryStringBytes;
@@ -77,52 +113,52 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
         private byte[] _decimalBytes;
 
         [Benchmark]
-        public string GetBinaryString() => _converter.GetBinaryString(_binaryStringBytes);
+        public string GetBinaryString() => converters[ConverterIndex].GetBinaryString(_binaryStringBytes);
 
         [Benchmark]
-        public string GetOctalString() => _converter.GetOctalString(_octalStringBytes);
+        public string GetOctalString() => converters[ConverterIndex].GetOctalString(_octalStringBytes);
 
         [Benchmark]
-        public string GetDecimalString() => _converter.GetDecimalString(_decimalStringBytes);
+        public string GetDecimalString() => converters[ConverterIndex].GetDecimalString(_decimalStringBytes);
 
         [Benchmark]
-        public string GetHexString() => _converter.GetHexString(_hexStringBytes);
+        public string GetHexString() => converters[ConverterIndex].GetHexString(_hexStringBytes);
 
         [Benchmark]
-        public string GetAsciiString() => _converter.GetAsciiString(_asciiStringBytes);
+        public string GetAsciiString() => converters[ConverterIndex].GetAsciiString(_asciiStringBytes);
 
         [Benchmark]
-        public string GetUtf8String() => _converter.GetUtf8String(_utf8StringBytes);
+        public string GetUtf8String() => converters[ConverterIndex].GetUtf8String(_utf8StringBytes);
 
         [Benchmark]
-        public string GetUtf32String() => _converter.GetUtf32String(_utf32StringBytes);
+        public string GetUtf32String() => converters[ConverterIndex].GetUtf32String(_utf32StringBytes);
 
         [Benchmark]
-        public ushort GetUShort() => _converter.GetUShort(_ushortBytes);
+        public ushort GetUShort() => converters[ConverterIndex].GetUShort(_ushortBytes);
 
         [Benchmark]
-        public uint GetUInt() => _converter.GetUInt(_uintBytes);
+        public uint GetUInt() => converters[ConverterIndex].GetUInt(_uintBytes);
 
         [Benchmark]
-        public ulong GetULong() => _converter.GetULong(_ulongBytes);
+        public ulong GetULong() => converters[ConverterIndex].GetULong(_ulongBytes);
 
         [Benchmark]
-        public short GetShort() => _converter.GetShort(_shortBytes);
+        public short GetShort() => converters[ConverterIndex].GetShort(_shortBytes);
 
         [Benchmark]
-        public int GetInt() => _converter.GetInt(_intBytes);
+        public int GetInt() => converters[ConverterIndex].GetInt(_intBytes);
 
         [Benchmark]
-        public long GetLong() => _converter.GetLong(_longBytes);
+        public long GetLong() => converters[ConverterIndex].GetLong(_longBytes);
 
         [Benchmark]
-        public float GetFloat() => _converter.GetFloat(_floatBytes);
+        public float GetFloat() => converters[ConverterIndex].GetFloat(_floatBytes);
 
         [Benchmark]
-        public double GetDouble() => _converter.GetDouble(_doubleBytes);
+        public double GetDouble() => converters[ConverterIndex].GetDouble(_doubleBytes);
 
         [Benchmark]
-        public decimal GetDecimal() => _converter.GetDecimal(_decimalBytes);
+        public decimal GetDecimal() => converters[ConverterIndex].GetDecimal(_decimalBytes);
 
         #endregion from bytes
 
@@ -146,52 +182,52 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
         private decimal _decimal;
 
         [Benchmark]
-        public byte[] ToBinaryString() => _converter.ParseBinaryString(_binaryString);
+        public byte[] ToBinaryString() => converters[ConverterIndex].ParseBinaryString(_binaryString);
 
         [Benchmark]
-        public byte[] ToOctalString() => _converter.ParseOctalString(_octalString);
+        public byte[] ToOctalString() => converters[ConverterIndex].ParseOctalString(_octalString);
 
         [Benchmark]
-        public byte[] ToDecimalString() => _converter.ParseDecimalString(_decimalString);
+        public byte[] ToDecimalString() => converters[ConverterIndex].ParseDecimalString(_decimalString);
 
         [Benchmark]
-        public byte[] ToHexString() => _converter.ParseHexString(_hexString);
+        public byte[] ToHexString() => converters[ConverterIndex].ParseHexString(_hexString);
 
         [Benchmark]
-        public byte[] ToAsciiString() => _converter.GetAsciiBytes(_asciiString);
+        public byte[] ToAsciiString() => converters[ConverterIndex].GetAsciiBytes(_asciiString);
 
         [Benchmark]
-        public byte[] ToUtf8String() => _converter.GetUtf8Bytes(_utf8String);
+        public byte[] ToUtf8String() => converters[ConverterIndex].GetUtf8Bytes(_utf8String);
 
         [Benchmark]
-        public byte[] ToUtf32String() => _converter.GetUtf32Bytes(_utf32String);
+        public byte[] ToUtf32String() => converters[ConverterIndex].GetUtf32Bytes(_utf32String);
 
         [Benchmark]
-        public byte[] ToUShort() => _converter.GetBytes(_ushort);
+        public byte[] ToUShort() => converters[ConverterIndex].GetBytes(_ushort);
 
         [Benchmark]
-        public byte[] ToUInt() => _converter.GetBytes(_uint);
+        public byte[] ToUInt() => converters[ConverterIndex].GetBytes(_uint);
 
         [Benchmark]
-        public byte[] ToULong() => _converter.GetBytes(_ulong);
+        public byte[] ToULong() => converters[ConverterIndex].GetBytes(_ulong);
 
         [Benchmark]
-        public byte[] ToShort() => _converter.GetBytes(_short);
+        public byte[] ToShort() => converters[ConverterIndex].GetBytes(_short);
 
         [Benchmark]
-        public byte[] ToInt() => _converter.GetBytes(_int);
+        public byte[] ToInt() => converters[ConverterIndex].GetBytes(_int);
 
         [Benchmark]
-        public byte[] ToLong() => _converter.GetBytes(_long);
+        public byte[] ToLong() => converters[ConverterIndex].GetBytes(_long);
 
         [Benchmark]
-        public byte[] ToFloat() => _converter.GetBytes(_float);
+        public byte[] ToFloat() => converters[ConverterIndex].GetBytes(_float);
 
         [Benchmark]
-        public byte[] ToDouble() => _converter.GetBytes(_double);
+        public byte[] ToDouble() => converters[ConverterIndex].GetBytes(_double);
 
         [Benchmark]
-        public byte[] ToDecimal() => _converter.GetBytes(_decimal);
+        public byte[] ToDecimal() => converters[ConverterIndex].GetBytes(_decimal);
 
         #endregion to bytes
     }

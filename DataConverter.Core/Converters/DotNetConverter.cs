@@ -2,72 +2,68 @@
 {
     public class DotNetConverter : IConverter
     {
-        public byte[] GetAsciiBytes(string s) => throw new System.NotImplementedException();
+        public byte[] GetAsciiBytes(string s) => default;
 
-        public string GetAsciiString(byte[] bytes) => throw new System.NotImplementedException();
+        public string GetAsciiString(byte[] bytes) => default;
 
-        public decimal GetBCD(byte[] bytes) => throw new System.NotImplementedException();
+        public string GetBinaryString(byte[] bytes) => default;
 
-        public byte[] GetBCDBytes(decimal d) => throw new System.NotImplementedException();
+        public byte[] GetBytes(ushort s) => default;
 
-        public string GetBinaryString(byte[] bytes) => throw new System.NotImplementedException();
+        public byte[] GetBytes(uint i) => default;
 
-        public byte[] GetBytes(ushort s) => throw new System.NotImplementedException();
+        public byte[] GetBytes(ulong l) => default;
 
-        public byte[] GetBytes(uint i) => throw new System.NotImplementedException();
+        public byte[] GetBytes(short s) => default;
 
-        public byte[] GetBytes(ulong l) => throw new System.NotImplementedException();
+        public byte[] GetBytes(int i) => default;
 
-        public byte[] GetBytes(short s) => throw new System.NotImplementedException();
+        public byte[] GetBytes(long l) => default;
 
-        public byte[] GetBytes(int i) => throw new System.NotImplementedException();
+        public byte[] GetBytes(float f) => default;
 
-        public byte[] GetBytes(long l) => throw new System.NotImplementedException();
+        public byte[] GetBytes(double d) => default;
 
-        public byte[] GetBytes(float f) => throw new System.NotImplementedException();
+        public byte[] GetBytes(decimal d) => default;
 
-        public byte[] GetBytes(double d) => throw new System.NotImplementedException();
+        public decimal GetDecimal(byte[] bytes) => default;
 
-        public byte[] GetBytes(decimal d) => throw new System.NotImplementedException();
+        public string GetDecimalString(byte[] bytes) => default;
 
-        public decimal GetDecimal(byte[] bytes) => throw new System.NotImplementedException();
+        public double GetDouble(byte[] bytes) => default;
 
-        public string GetDecimalString(byte[] bytes) => throw new System.NotImplementedException();
+        public float GetFloat(byte[] bytes) => default;
 
-        public double GetDouble(byte[] bytes) => throw new System.NotImplementedException();
+        public string GetHexString(byte[] bytes) => default;
 
-        public float GetFloat(byte[] bytes) => throw new System.NotImplementedException();
+        public int GetInt(byte[] bytes) => default;
 
-        public string GetHexString(byte[] bytes) => throw new System.NotImplementedException();
+        public long GetLong(byte[] bytes) => default;
 
-        public int GetInt(byte[] bytes) => throw new System.NotImplementedException();
+        public string GetOctalString(byte[] bytes) => default;
 
-        public long GetLong(byte[] bytes) => throw new System.NotImplementedException();
+        public short GetShort(byte[] bytes) => default;
 
-        public string GetOctalString(byte[] bytes) => throw new System.NotImplementedException();
+        public uint GetUInt(byte[] bytes) => default;
 
-        public short GetShort(byte[] bytes) => throw new System.NotImplementedException();
+        public ulong GetULong(byte[] bytes) => default;
 
-        public uint GetUInt(byte[] bytes) => throw new System.NotImplementedException();
+        public ushort GetUShort(byte[] bytes) => default;
 
-        public ulong GetULong(byte[] bytes) => throw new System.NotImplementedException();
+        public byte[] GetUtf32Bytes(string s) => default;
 
-        public ushort GetUShort(byte[] bytes) => throw new System.NotImplementedException();
+        public string GetUtf32String(byte[] bytes) => default;
 
-        public byte[] GetUtf32Bytes(string s) => throw new System.NotImplementedException();
+        public byte[] GetUtf8Bytes(string s) => default;
 
-        public string GetUtf32String(byte[] bytes) => throw new System.NotImplementedException();
+        public string GetUtf8String(byte[] bytes) => default;
 
-        public byte[] GetUtf8Bytes(string s) => throw new System.NotImplementedException();
+        public byte[] ParseBinaryString(string s) => default;
 
-        public string GetUtf8String(byte[] bytes) => throw new System.NotImplementedException();
+        public byte[] ParseDecimalString(string s) => default;
 
-        public byte[] ParseBinaryString(string s) => throw new System.NotImplementedException();
+        public byte[] ParseHexString(string s) => default;
 
-        public byte[] ParseDecimalString(string s) => throw new System.NotImplementedException();
-
-        public byte[] ParseHexString(string s) => throw new System.NotImplementedException();
-
-        public byte[] ParseOctalString(string s) => throw new System.NotImplementedException();
+        public byte[] ParseOctalString(string s) => default;
     }
 }
