@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataConverter.Core.TestData\DataConverter.Core.TestData.csproj" />
     <ProjectReference Include="..\DataConverter.Core\DataConverter.Core.csproj" />
   </ItemGroup>
 

@@ -1,8 +1,6 @@
 ﻿using DataConverter.Core.Converters;
 using DataConverter.Core.TestData;
 
-using FluentAssertions;
-
 using NUnit.Framework;
 
 namespace DataConverter.Core.Tests.Tests

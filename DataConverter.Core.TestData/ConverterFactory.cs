@@ -1,6 +1,6 @@
 ﻿using DataConverter.Core.Converters;
 
-namespace DataConverter.Core.Tests
+namespace DataConverter.Core.TestData
 {
     public class ConverterFactory
     {
