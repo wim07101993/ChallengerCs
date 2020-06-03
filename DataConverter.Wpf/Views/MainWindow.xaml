@@ -6,6 +6,8 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:views="clr-namespace:DataConverter.Wpf.Views"
     Title="Data Converter"
+    MinWidth="800"
+    MinHeight="600"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -39,9 +41,9 @@
                         Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
 
                     <ListBox
-                        SelectionChanged="OnPageListSelectionChanged"
                         ItemsSource="{StaticResource Pages}"
-                        SelectedIndex="{Binding ElementName=Transitioner, Path=SelectedIndex}">
+                        SelectedIndex="{Binding ElementName=Transitioner, Path=SelectedIndex}"
+                        SelectionChanged="OnPageListSelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Margin="32,0,32,0" Text="{Binding .}" />

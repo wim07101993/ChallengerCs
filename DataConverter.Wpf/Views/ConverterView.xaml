@@ -1,16 +1,177 @@
 ﻿<UserControl
     x:Class="DataConverter.Wpf.Views.ConverterView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto">
 
     <UserControl.Resources>
         <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="{x:Type TextBox}">
-            <Setter Property="MinWidth" Value="150" />
+            <Setter Property="MinWidth" Value="300" />
+            <Setter Property="Margin" Value="0,8" />
         </Style>
-        <Style BasedOn="{StaticResource MaterialDesignCardGroupBox}" TargetType="{x:Type GroupBox}" />
+        <Style BasedOn="{StaticResource MaterialDesignGroupBox}" TargetType="{x:Type GroupBox}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="material:ShadowAssist.ShadowDepth" Value="Depth3" />
+            <Setter Property="Margin" Value="16" />
+        </Style>
     </UserControl.Resources>
 
-    <Grid>
-        <TextBlock>Converter</TextBlock>
-    </Grid>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button
+                    Command="Cut"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Cut">
+                    <material:PackIcon Kind="ContentCut" />
+                </Button>
+                <Button
+                    Command="Copy"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Copy that stuff">
+                    <material:PackIcon Kind="ContentCopy" />
+                </Button>
+                <Button
+                    Command="Paste"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Copy that stuff">
+                    <material:PackIcon Kind="ContentPaste" />
+                </Button>
+            </ToolBar>
+            <ToolBar>
+                <Label
+                    VerticalAlignment="Center"
+                    Content="Endianness:"
+                    IsEnabled="False" />
+                <!--  TODO Enable endiannesses  -->
+                <ComboBox IsEnabled="False">
+                    <ComboBoxItem Content="Little-endian" IsSelected="True" />
+                    <ComboBoxItem Content="Middle-endian" />
+                    <ComboBoxItem Content="Big-endian" />
+                </ComboBox>
+            </ToolBar>
+        </ToolBarTray>
+
+        <WrapPanel>
+            <GroupBox>
+                <GroupBox.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <material:PackIcon
+                            Width="32"
+                            Height="32"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                            Kind="CodeString" />
+                        <TextBlock
+                            Margin="8,0,0,0"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                            Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                            Text="String formatting" />
+                    </StackPanel>
+                </GroupBox.Header>
+                <StackPanel Margin="24,0,24,24">
+                    <TextBox
+                        Margin="0,0,0,8"
+                        material:HintAssist.HelperText="Data formatted in binary format"
+                        material:HintAssist.Hint="Binary String" />
+                    <TextBox material:HintAssist.HelperText="Data formatted in octal format" material:HintAssist.Hint="Octal String" />
+                    <TextBox material:HintAssist.HelperText="Data formatted in decimal" material:HintAssist.Hint="Decimal String" />
+                    <TextBox material:HintAssist.HelperText="Data formatted in hexadecimal format" material:HintAssist.Hint="Hexadecimal String" />
+                    <TextBox material:HintAssist.HelperText="Data formatted in ASCII encoding" material:HintAssist.Hint="ASCII String" />
+                    <TextBox material:HintAssist.HelperText="Data formatted in UTF8 encoding" material:HintAssist.Hint="UTF8 String" />
+                    <TextBox material:HintAssist.HelperText="Data formatted in UTF32 encoding" material:HintAssist.Hint="UTF32 String" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox>
+                <GroupBox.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <material:PackIcon
+                            Width="32"
+                            Height="32"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                            Kind="Number2BoxMultipleOutline" />
+                        <TextBlock
+                            Margin="8,0,0,0"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                            Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                            Text="Number formatting" />
+                    </StackPanel>
+                </GroupBox.Header>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,0,16,8"
+                        material:HintAssist.HelperText="Data formatted as a 16 bit unsigned integer (ushort)"
+                        material:HintAssist.Hint="UInt16" />
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,0,0,8"
+                        material:HintAssist.HelperText="Data formatted as a 16 bit integer (short)"
+                        material:HintAssist.Hint="Int16" />
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,8,16,8"
+                        material:HintAssist.HelperText="Data formatted as a 32 bit unsigned integer (uint)"
+                        material:HintAssist.Hint="UInt32" />
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        material:HintAssist.HelperText="Data formatted as a 32 bit integer (int)"
+                        material:HintAssist.Hint="Int32" />
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0,8,16,8"
+                        material:HintAssist.HelperText="Data formatted as a 64 bit unsigned integer (ulong)"
+                        material:HintAssist.Hint="UInt64" />
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        material:HintAssist.HelperText="Data formatted as a 64 bit integer (long)"
+                        material:HintAssist.Hint="UInt64" />
+                    <TextBox
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="0,8,16,8"
+                        material:HintAssist.HelperText="Data formatted as a 32 bit integer (float)"
+                        material:HintAssist.Hint="Float32" />
+                    <TextBox
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        material:HintAssist.HelperText="Data formatted as a 64 bit integer (double)"
+                        material:HintAssist.Hint="Float64" />
+                    <TextBox
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        material:HintAssist.HelperText="Data formatted as a 128 bit integer (decimal)"
+                        material:HintAssist.Hint="Float128" />
+                </Grid>
+            </GroupBox>
+        </WrapPanel>
+    </DockPanel>
 </UserControl>
