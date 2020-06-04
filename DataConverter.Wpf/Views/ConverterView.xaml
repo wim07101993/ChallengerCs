@@ -2,8 +2,10 @@
     x:Class="DataConverter.Wpf.Views.ConverterView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="clr-namespace:DataConverter.Wpf.Helpers"
     xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:shared="clr-namespace:DataConverter.Shared;assembly=DataConverter.Shared"
+    xmlns:vm="clr-namespace:DataConverter.Wpf.ViewModels"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -88,31 +90,31 @@
                         Margin="0,0,0,8"
                         material:HintAssist.HelperText="Data formatted in binary format"
                         material:HintAssist.Hint="Binary String"
-                        Text="{Binding BinaryString, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding BinaryString.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         material:HintAssist.HelperText="Data formatted in octal format"
                         material:HintAssist.Hint="Octal String"
-                        Text="{Binding OctalString, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding OctalString.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         material:HintAssist.HelperText="Data formatted in decimal"
                         material:HintAssist.Hint="Decimal String"
-                        Text="{Binding DecimalString, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding DecimalString.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         material:HintAssist.HelperText="Data formatted in hexadecimal format"
                         material:HintAssist.Hint="Hexadecimal String"
-                        Text="{Binding HexString, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding HexString.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         material:HintAssist.HelperText="Data formatted in ASCII encoding"
                         material:HintAssist.Hint="ASCII String"
-                        Text="{Binding AsciiString, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding AsciiString.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         material:HintAssist.HelperText="Data formatted in UTF8 encoding"
                         material:HintAssist.Hint="UTF8 String"
-                        Text="{Binding Utf8String, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Utf8String.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         material:HintAssist.HelperText="Data formatted in UTF32 encoding"
                         material:HintAssist.Hint="UTF32 String"
-                        Text="{Binding Utf32String, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Utf32String.Value, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </GroupBox>
 
@@ -152,59 +154,59 @@
                         Margin="0,0,16,8"
                         material:HintAssist.HelperText="Data formatted as a 16 bit unsigned integer (ushort)"
                         material:HintAssist.Hint="UInt16"
-                        Text="{Binding UShort, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding UShort.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         Grid.Row="0"
                         Grid.Column="1"
                         Margin="0,0,0,8"
                         material:HintAssist.HelperText="Data formatted as a 16 bit integer (short)"
                         material:HintAssist.Hint="Int16"
-                        Text="{Binding Short, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Short.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="0"
                         Margin="0,8,16,8"
                         material:HintAssist.HelperText="Data formatted as a 32 bit unsigned integer (uint)"
                         material:HintAssist.Hint="UInt32"
-                        Text="{Binding UInt, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding UInt.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="1"
                         material:HintAssist.HelperText="Data formatted as a 32 bit integer (int)"
                         material:HintAssist.Hint="Int32"
-                        Text="{Binding Int, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Int.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="0"
                         Margin="0,8,16,8"
                         material:HintAssist.HelperText="Data formatted as a 64 bit unsigned integer (ulong)"
                         material:HintAssist.Hint="UInt64"
-                        Text="{Binding ULong, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding ULong.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
                         material:HintAssist.HelperText="Data formatted as a 64 bit integer (long)"
                         material:HintAssist.Hint="UInt64"
-                        Text="{Binding Long, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Long.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         Grid.Row="3"
                         Grid.Column="0"
                         Margin="0,8,16,8"
                         material:HintAssist.HelperText="Data formatted as a 32 bit integer (float)"
                         material:HintAssist.Hint="Float32"
-                        Text="{Binding Float, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Float.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         Grid.Row="3"
                         Grid.Column="1"
                         material:HintAssist.HelperText="Data formatted as a 64 bit integer (double)"
                         material:HintAssist.Hint="Float64"
-                        Text="{Binding Double, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Double.Value, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox
                         Grid.Row="4"
                         Grid.Column="0"
                         material:HintAssist.HelperText="Data formatted as a 128 bit integer (decimal)"
                         material:HintAssist.Hint="Float128"
-                        Text="{Binding Decimal, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Decimal.Value, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
         </WrapPanel>

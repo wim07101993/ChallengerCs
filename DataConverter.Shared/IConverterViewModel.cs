@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 
+using DataConverter.Shared.ConvertedValueTypes;
+
 namespace DataConverter.Shared
 {
     public interface IConverterViewModel : INotifyPropertyChanged
@@ -8,21 +10,21 @@ namespace DataConverter.Shared
         int SelectedConverterIndex { get; set; }
         IEnumerable<string> Converters { get; }
 
-        string BinaryString { get; set; }
-        string OctalString { get; set; }
-        string DecimalString { get; set; }
-        string HexString { get; set; }
-        string AsciiString { get; set; }
-        string Utf8String { get; set; }
-        string Utf32String { get; set; }
-        ushort UShort { get; set; }
-        short Short { get; set; }
-        uint UInt { get; set; }
-        int Int { get; set; }
-        ulong ULong { get; set; }
-        long Long { get; set; }
-        float Float { get; set; }
-        double Double { get; set; }
-        decimal Decimal { get; set; }
+        ConvertedBinaryString BinaryString { get; }
+        ConvertedOctalString OctalString { get; }
+        ConvertedDecimalString DecimalString { get; }
+        ConvertedHexString HexString { get; }
+        ConvertedAsciiString AsciiString { get; }
+        ConvertedUtf8String Utf8String { get; }
+        ConvertedUtf32String Utf32String { get; }
+        ConvertedValue<ushort> UShort { get; }
+        ConvertedValue<short> Short { get; }
+        ConvertedValue<uint> UInt { get; }
+        ConvertedValue<int> Int { get; }
+        ConvertedValue<ulong> ULong { get; }
+        ConvertedValue<long> Long { get; }
+        ConvertedValue<float> Float { get; }
+        ConvertedValue<double> Double { get; }
+        ConvertedValue<decimal> Decimal { get; }
     }
 }

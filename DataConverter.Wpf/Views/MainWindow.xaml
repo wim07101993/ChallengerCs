@@ -76,7 +76,11 @@
                     </DockPanel>
                 </material:ColorZone>
 
-                <ContentPresenter Content="{Binding ElementName=PageListBox, Path=SelectedItem}" />
+                <Grid>
+                    <ContentPresenter Content="{Binding ElementName=PageListBox, Path=SelectedItem}" />
+
+                    <material:Snackbar x:Name="MainSnackbar" MessageQueue="{material:MessageQueue}" />
+                </Grid>
             </DockPanel>
         </material:DrawerHost>
     </material:DialogHost>
