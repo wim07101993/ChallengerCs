@@ -38,18 +38,17 @@
                     x:Name="ConverterMenuItem"
                     Content="Converter"
                     Icon="TwoPage" />
-                <muxc:NavigationViewItem
-                    x:Name="ColorToolMenuItem"
-                    Content="Color Tool"
-                    Icon="Edit" />
+                <muxc:NavigationViewItem x:Name="ColorToolMenuItem" Content="Color Tool">
+                    <muxc:NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" />
+                    </muxc:NavigationViewItem.Icon>
+                </muxc:NavigationViewItem>
             </muxc:NavigationView.MenuItems>
 
-            <ScrollViewer>
-                <Frame
-                    x:Name="RootFrame"
-                    Padding="12,0,12,24"
-                    IsTabStop="True" />
-            </ScrollViewer>
+            <Frame
+                x:Name="RootFrame"
+                Padding="12,0,12,24"
+                IsTabStop="True" />
         </muxc:NavigationView>
     </Grid>
 </Page>
