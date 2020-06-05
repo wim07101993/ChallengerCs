@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="DataConverter.Uwp.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Border
+            x:Name="AppTitleBar"
+            Grid.Column="1"
+            Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            Canvas.ZIndex="1"
+            IsHitTestVisible="True">
+            <TextBlock
+                x:Name="AppTitle"
+                VerticalAlignment="Center"
+                Style="{StaticResource CaptionTextBlockStyle}"
+                Text="{x:Bind AppTitleFromSystem}" />
+        </Border>
+
+        <muxc:NavigationView
+            x:Name="NavigationViewControl"
+            AlwaysShowHeader="True"
+            Canvas.ZIndex="0"
+            DisplayModeChanged="OnNavigationDisplayModeChanged"
+            Header=" "
+            IsSettingsVisible="False"
+            IsTabStop="False"
+            IsTitleBarAutoPaddingEnabled="False"
+            ItemInvoked="OnNavigate"
+            PaneClosing="NavigationViewControl_PaneClosing"
+            PaneOpening="OnNavigationPaneOpened">
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem
+                    x:Name="ConverterMenuItem"
+                    Content="Converter"
+                    Icon="TwoPage" />
+                <muxc:NavigationViewItem
+                    x:Name="ColorToolMenuItem"
+                    Content="Color Tool"
+                    Icon="Edit" />
+            </muxc:NavigationView.MenuItems>
+
+            <ScrollViewer>
+                <Frame
+                    x:Name="RootFrame"
+                    Padding="12,0,12,24"
+                    IsTabStop="True" />
+            </ScrollViewer>
+        </muxc:NavigationView>
+    </Grid>
+</Page>

@@ -20,13 +20,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter.Core.TestData
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{D271F6FB-5E82-4EBD-AFB0-07A1A16F1955}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Wpf", "DataConverter.Wpf\DataConverter.Wpf.csproj", "{51CD8396-99D0-46F7-B22B-C66CBEC89EA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter.Wpf", "DataConverter.Wpf\DataConverter.Wpf.csproj", "{51CD8396-99D0-46F7-B22B-C66CBEC89EA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Uwp", "DataConverter.Uwp\DataConverter.Uwp.csproj", "{0AB06C13-CA5A-4E96-A208-08A968322E4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Console", "DataConverter.Console\DataConverter.Console.csproj", "{884531D0-79F8-4B99-93A8-CF690CE28025}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter.Console", "DataConverter.Console\DataConverter.Console.csproj", "{884531D0-79F8-4B99-93A8-CF690CE28025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Shared", "DataConverter.Shared\DataConverter.Shared.csproj", "{8BA29BFD-F14A-4FEF-B858-DBEC0A9A1EE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter.Shared", "DataConverter.Shared\DataConverter.Shared.csproj", "{8BA29BFD-F14A-4FEF-B858-DBEC0A9A1EE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,7 +141,8 @@ Global
 		{51CD8396-99D0-46F7-B22B-C66CBEC89EA8}.Release|x64.Build.0 = Release|Any CPU
 		{51CD8396-99D0-46F7-B22B-C66CBEC89EA8}.Release|x86.ActiveCfg = Release|Any CPU
 		{51CD8396-99D0-46F7-B22B-C66CBEC89EA8}.Release|x86.Build.0 = Release|Any CPU
-		{0AB06C13-CA5A-4E96-A208-08A968322E4F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0AB06C13-CA5A-4E96-A208-08A968322E4F}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{0AB06C13-CA5A-4E96-A208-08A968322E4F}.Debug|Any CPU.Build.0 = Debug|x64
 		{0AB06C13-CA5A-4E96-A208-08A968322E4F}.Debug|ARM.ActiveCfg = Debug|ARM
 		{0AB06C13-CA5A-4E96-A208-08A968322E4F}.Debug|ARM.Build.0 = Debug|ARM
 		{0AB06C13-CA5A-4E96-A208-08A968322E4F}.Debug|ARM.Deploy.0 = Debug|ARM
