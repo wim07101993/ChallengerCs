@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Timers;
 
 using DataConverter.Core.Converters;
 using DataConverter.Shared.ConvertedValueTypes;
-
-using Timer = System.Timers.Timer;
 
 namespace DataConverter.Shared
 {
     public abstract class ConverterViewModelBase : AsyncBindableBase, IConverterViewModel
     {
-        private readonly DelayedInvoker _delayedInvoker = new DelayedInvoker(500);
-
         private readonly List<IConverter> _converters = new List<IConverter>
         {
             new DotNetConverter(),
@@ -137,7 +132,7 @@ namespace DataConverter.Shared
                 return;
 
             _data = e;
-            
+
             foreach (var value in Values.Where(x => x != sender))
                 _ = value.UpdateAsync(_data);
         }
