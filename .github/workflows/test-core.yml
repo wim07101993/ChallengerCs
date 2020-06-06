@@ -2,9 +2,13 @@ name: Test Core
 
 on:
   push:
-    branches: [ master, challenge-solutions ]
+    branches: 
+    - master
+    - challenge-solutions 
   pull_request:
-    branches: [ master, challenge-solutions ]
+    branches:
+    - master
+    - challenge-solutions 
 
 jobs:
   build:
