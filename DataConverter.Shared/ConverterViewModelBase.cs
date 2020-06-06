@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 using DataConverter.Core.Converters;
@@ -10,6 +12,9 @@ namespace DataConverter.Shared
 {
     public abstract class ConverterViewModelBase : AsyncBindableBase, IConverterViewModel
     {
+        /// <summary>Maximum lengt of the data in bytes</summary>
+        public const int MaxDataLength = 32;
+
         private readonly List<IConverter> _converters = new List<IConverter>
         {
             new DotNetConverter(),
@@ -19,11 +24,18 @@ namespace DataConverter.Shared
         };
 
         private IConverter _converter;
-        private byte[] _data = new byte[0];
         private bool _surpressUpdates;
 
         public ConverterViewModelBase()
         {
+            Bits = new Bit[MaxDataLength * 8];
+            for (var i = 0; i < Bits.Length; i++)
+            {
+                var bit = new Bit(i, Bytes);
+                bit.PropertyChanged += OnBitChanged;
+                Bits[Bits.Length - i - 1] = bit;
+            }
+
             BinaryString = new ConvertedBinaryString(InvokeOnSTAThread);
             OctalString = new ConvertedOctalString(InvokeOnSTAThread);
             DecimalString = new ConvertedDecimalString(InvokeOnSTAThread);
@@ -41,27 +53,31 @@ namespace DataConverter.Shared
             Double = new ConvertedValue<double>(InvokeOnSTAThread);
             Decimal = new ConvertedValue<decimal>(InvokeOnSTAThread);
 
-            BinaryString.OnValueChanged += OnValueChanged;
-            OctalString.OnValueChanged += OnValueChanged;
-            DecimalString.OnValueChanged += OnValueChanged;
-            HexString.OnValueChanged += OnValueChanged;
-            AsciiString.OnValueChanged += OnValueChanged;
-            Utf8String.OnValueChanged += OnValueChanged;
-            Utf32String.OnValueChanged += OnValueChanged;
-            UShort.OnValueChanged += OnValueChanged;
-            Short.OnValueChanged += OnValueChanged;
-            UInt.OnValueChanged += OnValueChanged;
-            Int.OnValueChanged += OnValueChanged;
-            ULong.OnValueChanged += OnValueChanged;
-            Long.OnValueChanged += OnValueChanged;
-            Float.OnValueChanged += OnValueChanged;
-            Double.OnValueChanged += OnValueChanged;
-            Decimal.OnValueChanged += OnValueChanged;
+            BinaryString.OnValueChanged += OnValueChangedAsync;
+            OctalString.OnValueChanged += OnValueChangedAsync;
+            DecimalString.OnValueChanged += OnValueChangedAsync;
+            HexString.OnValueChanged += OnValueChangedAsync;
+            AsciiString.OnValueChanged += OnValueChangedAsync;
+            Utf8String.OnValueChanged += OnValueChangedAsync;
+            Utf32String.OnValueChanged += OnValueChangedAsync;
+            UShort.OnValueChanged += OnValueChangedAsync;
+            Short.OnValueChanged += OnValueChangedAsync;
+            UInt.OnValueChanged += OnValueChangedAsync;
+            Int.OnValueChanged += OnValueChangedAsync;
+            ULong.OnValueChanged += OnValueChangedAsync;
+            Long.OnValueChanged += OnValueChangedAsync;
+            Float.OnValueChanged += OnValueChangedAsync;
+            Double.OnValueChanged += OnValueChangedAsync;
+            Decimal.OnValueChanged += OnValueChangedAsync;
 
             _surpressUpdates = true;
             Converter = _converters[0];
             _surpressUpdates = false;
         }
+
+        public byte[] Bytes { get; } = new byte[MaxDataLength];
+
+        public Bit[] Bits { get; }
 
         public int SelectedConverterIndex
         {
@@ -82,7 +98,7 @@ namespace DataConverter.Shared
                 foreach (var v in Values)
                     v.Converter = value;
 
-                OnValueChanged(this, _data);
+                OnValueChangedAsync(this, Bytes);
                 _ = RaisePropertyChangedAsync(nameof(SelectedConverterIndex));
             }
         }
@@ -126,15 +142,35 @@ namespace DataConverter.Shared
 
         protected abstract Task InvokeOnSTAThread(Action action);
 
-        private void OnValueChanged(object sender, byte[] e)
+        protected virtual async void OnValueChangedAsync(object sender, byte[] e)
+        {
+            if (_surpressUpdates)
+                return;
+            _surpressUpdates = true;
+
+            if (e.Length > Bytes.Length)
+                Array.Copy(e, Bytes, Bytes.Length);
+            else
+            {
+                Array.Copy(e, Bytes, e.Length);
+                Array.Clear(Bytes, e.Length, Bytes.Length - e.Length);
+            }
+
+            var tasks = Values
+                .Where(x => x != sender)
+                .Select(x => x.UpdateAsync(Bytes))
+                .Concat(Bits.Select(x => InvokeOnSTAThread(x.RaiseValueChanged)));
+
+            await Task.WhenAll(tasks);
+            _surpressUpdates = false;
+        }
+
+        private void OnBitChanged(object sender, PropertyChangedEventArgs e)
         {
             if (_surpressUpdates)
                 return;
 
-            _data = e;
-
-            foreach (var value in Values.Where(x => x != sender))
-                _ = value.UpdateAsync(_data);
+            OnValueChangedAsync(this, Bytes);
         }
     }
 }

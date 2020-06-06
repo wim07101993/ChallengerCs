@@ -8,6 +8,7 @@ namespace DataConverter.Wpf.ViewModels
 {
     public class ConverterViewModel : ConverterViewModelBase
     {
-        protected override Task InvokeOnSTAThread(Action action) => Task.Run(() => Application.Current.Dispatcher.Invoke(action));
+        protected override Task InvokeOnSTAThread(Action action)
+            => Task.Run(() => Application.Current.Dispatcher.Invoke(action));
     }
 }
