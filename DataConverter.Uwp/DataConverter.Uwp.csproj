@@ -94,9 +94,6 @@
     <Compile Include="Helpers\DeviceFamilyTrigger.cs" />
     <Compile Include="Helpers\ThemeHelper.cs" />
     <Compile Include="ViewModels\ConverterViewModel.cs" />
-    <Compile Include="Views\ColorToolPage.xaml.cs">
-      <DependentUpon>ColorToolPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ConverterPage.xaml.cs">
       <DependentUpon>ConverterPage.xaml</DependentUpon>
     </Compile>
@@ -125,10 +122,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\ColorToolPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\ConverterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

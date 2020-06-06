@@ -72,8 +72,6 @@ namespace DataConverter.Uwp.Views
             Type type = null;
             if (invokedItem == ConverterMenuItem)
                 type = typeof(ConverterPage);
-            else if (invokedItem == ColorToolMenuItem)
-                type = typeof(ColorToolPage);
 
             if (type != null && RootFrame.CurrentSourcePageType != type)
                 _ = RootFrame.Navigate(type);
