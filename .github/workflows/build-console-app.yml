@@ -1,0 +1,27 @@
+name: Build console app
+
+on:
+  push:
+    branches: 
+    - master
+    - development
+  pull_request:
+    branches: 
+    - master
+    - development
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Install dependencies
+      run: dotnet restore DataConverter.Console
+    - name: Build
+      run: dotnet build DataConverter.Console --configuration Release --no-restore
