@@ -33,6 +33,8 @@ namespace DataConverter.Shared.ConvertedValueTypes
             {
                 lock (Lock)
                 {
+                    // For some reason the two-way binding of UWP tries to update the value 
+                    // again when PropertyChanged is called.
                     if (IsPropertyChanging && ChangingProperty == nameof(Value))
                         return;
                 }
