@@ -9,7 +9,7 @@ namespace DataConverter.Wpf.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null) 
+            if (value == null)
                 return null;
 
             static string LowerHexString(int i) => i.ToString("X2").ToLower();

@@ -8,7 +8,7 @@ using Prism.Events;
 
 namespace DataConverter.Wpf
 {
-    public partial class MainWindow 
+    public partial class MainWindow
     {
         public MainWindow()
         {

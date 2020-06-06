@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 using CommandLine;
 
@@ -33,7 +32,7 @@ namespace DataConverter.Console
             if (options.IsVerbose)
             {
                 C.Write($"Input: {options.Input} => bytes = [");
-                foreach (var b in bytes) 
+                foreach (var b in bytes)
                     C.Write($"{b:X} ");
                 C.WriteLine("]");
             }
@@ -132,7 +131,6 @@ namespace DataConverter.Console
                 ValueType.Decimal => x => converter.GetDecimal(x),
                 _ => null
             };
-
         }
 
         private static string TryGetConvertedValue<T>(Func<byte[], T> convertAction, byte[] bytes)

@@ -1,6 +1,4 @@
-﻿using DataConverter.Shared;
-
-namespace DataConverter.Wpf.Views
+﻿namespace DataConverter.Wpf.Views
 {
     public partial class ConverterView
     {

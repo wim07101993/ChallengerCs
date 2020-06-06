@@ -3,8 +3,6 @@
 using CommandLine;
 using CommandLine.Text;
 
-using DataConverter.Core.Converters;
-
 namespace DataConverter.Console
 {
     public class Options
@@ -38,9 +36,9 @@ namespace DataConverter.Console
         {
             get
             {
-                yield return new Example("Convert int to hex", new Options 
+                yield return new Example("Convert int to hex", new Options
                 {
-                    Input = "10", 
+                    Input = "10",
                     InputType = ValueType.Int,
                     OutputType = ValueType.HexString
                 });
@@ -62,7 +60,6 @@ namespace DataConverter.Console
         [Option('p', "outputtype", Required = false, Default = ValueType.All,
             HelpText = "Type of the data to convert to.\r\n- All\t\r\n" + ValueTypePossibilities)]
         public ValueType OutputType { get; set; }
-
 
         [Option('c', "converter", Required = false, Default = ConverterType.Performace,
             HelpText = "Type of converter to convert with.\r\n" + ConverterTypePossibilities)]

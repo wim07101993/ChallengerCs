@@ -89,7 +89,7 @@ namespace DataConverter.Uwp.Helpers
 
         public static void UpdateSystemCaptionButtonColors()
         {
-            ApplicationView.GetForCurrentView().TitleBar.ButtonForegroundColor = IsDarkTheme() 
+            ApplicationView.GetForCurrentView().TitleBar.ButtonForegroundColor = IsDarkTheme()
                 ? (Color?)Colors.White
                 : (Color?)Colors.Black;
         }

@@ -55,7 +55,6 @@
                 </DockPanel>
             </material:DrawerHost.LeftDrawerContent>
 
-
             <DockPanel>
                 <material:ColorZone
                     Padding="16"

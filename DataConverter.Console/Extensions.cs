@@ -1,6 +1,4 @@
-﻿using System;
-
-using DataConverter.Core.Converters;
+﻿using DataConverter.Core.Converters;
 
 namespace DataConverter.Console
 {

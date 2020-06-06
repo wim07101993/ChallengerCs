@@ -148,8 +148,8 @@ namespace DataConverter.Shared
                 IsPropertyChanging = true;
                 ChangingProperty = args.PropertyName;
             }
-            
-            await  UiThreadInvoker.Invoke(() => PropertyChanged?.Invoke(this, args));
+
+            await UiThreadInvoker.Invoke(() => PropertyChanged?.Invoke(this, args));
 
             lock (Lock)
             {
