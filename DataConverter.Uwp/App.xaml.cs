@@ -6,6 +6,7 @@ using DataConverter.Uwp.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -26,6 +27,8 @@ namespace DataConverter.Uwp
             InitializeComponent();
             Suspending += OnSuspending;
         }
+
+        public static CoreDispatcher Dispatcher => CoreApplication.MainView.CoreWindow.Dispatcher;
 
         /// <summary>
         ///     Invoked when the application is launched normally by the end user. Other entry

@@ -1,7 +1,14 @@
-﻿namespace DataConverter.Shared.ConvertedValueTypes
+﻿using System;
+using System.Threading.Tasks;
+
+namespace DataConverter.Shared.ConvertedValueTypes
 {
     public class ConvertedAsciiString : ConvertedValue<string>
     {
+        public ConvertedAsciiString(Func<Action, Task> uiThreadInvoker) : base(uiThreadInvoker)
+        {
+        }
+
         public override string Name => "ASCII String";
 
         protected override byte[] ToBytes(string value) => Converter.GetAsciiBytes(value);

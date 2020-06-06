@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
@@ -6,15 +7,13 @@ using System.Timers;
 using DataConverter.Core.Converters;
 using DataConverter.Shared.ConvertedValueTypes;
 
-using Prism.Mvvm;
-
 using Timer = System.Timers.Timer;
 
 namespace DataConverter.Shared
 {
-    public class ConverterViewModel : BindableBase, IConverterViewModel
+    public abstract class ConverterViewModelBase : AsyncBindableBase, IConverterViewModel
     {
-        private readonly object _lock = new object();
+        private readonly DelayedInvoker _delayedInvoker = new DelayedInvoker(500);
 
         private readonly List<IConverter> _converters = new List<IConverter>
         {
@@ -24,30 +23,28 @@ namespace DataConverter.Shared
             new ObfuscatedConverter(),
         };
 
-        private readonly Timer _updateDelaytimer = new Timer(500);
-
         private IConverter _converter;
         private byte[] _data = new byte[0];
         private bool _surpressUpdates;
 
-        public ConverterViewModel()
+        public ConverterViewModelBase()
         {
-            BinaryString = new ConvertedBinaryString();
-            OctalString = new ConvertedOctalString();
-            DecimalString = new ConvertedDecimalString();
-            HexString = new ConvertedHexString();
-            AsciiString = new ConvertedAsciiString();
-            Utf8String = new ConvertedUtf8String();
-            Utf32String = new ConvertedUtf32String();
-            UShort = new ConvertedValue<ushort>();
-            Short = new ConvertedValue<short>();
-            UInt = new ConvertedValue<uint>();
-            Int = new ConvertedValue<int>();
-            ULong = new ConvertedValue<ulong>();
-            Long = new ConvertedValue<long>();
-            Float = new ConvertedValue<float>();
-            Double = new ConvertedValue<double>();
-            Decimal = new ConvertedValue<decimal>();
+            BinaryString = new ConvertedBinaryString(InvokeOnSTAThread);
+            OctalString = new ConvertedOctalString(InvokeOnSTAThread);
+            DecimalString = new ConvertedDecimalString(InvokeOnSTAThread);
+            HexString = new ConvertedHexString(InvokeOnSTAThread);
+            AsciiString = new ConvertedAsciiString(InvokeOnSTAThread);
+            Utf8String = new ConvertedUtf8String(InvokeOnSTAThread);
+            Utf32String = new ConvertedUtf32String(InvokeOnSTAThread);
+            UShort = new ConvertedValue<ushort>(InvokeOnSTAThread);
+            Short = new ConvertedValue<short>(InvokeOnSTAThread);
+            UInt = new ConvertedValue<uint>(InvokeOnSTAThread);
+            Int = new ConvertedValue<int>(InvokeOnSTAThread);
+            ULong = new ConvertedValue<ulong>(InvokeOnSTAThread);
+            Long = new ConvertedValue<long>(InvokeOnSTAThread);
+            Float = new ConvertedValue<float>(InvokeOnSTAThread);
+            Double = new ConvertedValue<double>(InvokeOnSTAThread);
+            Decimal = new ConvertedValue<decimal>(InvokeOnSTAThread);
 
             BinaryString.OnValueChanged += OnValueChanged;
             OctalString.OnValueChanged += OnValueChanged;
@@ -91,7 +88,7 @@ namespace DataConverter.Shared
                     v.Converter = value;
 
                 OnValueChanged(this, _data);
-                RaisePropertyChanged(nameof(SelectedConverterIndex));
+                _ = RaisePropertyChangedAsync(nameof(SelectedConverterIndex));
             }
         }
 
@@ -132,28 +129,17 @@ namespace DataConverter.Shared
         public ConvertedValue<double> Double { get; }
         public ConvertedValue<decimal> Decimal { get; }
 
+        protected abstract Task InvokeOnSTAThread(Action action);
+
         private void OnValueChanged(object sender, byte[] e)
         {
             if (_surpressUpdates)
                 return;
 
             _data = e;
-            lock (_lock)
-            {
-                if (!_updateDelaytimer.Enabled)
-                    _updateDelaytimer.Elapsed += StartUpdateAsync;
-
-                _updateDelaytimer.Enabled = false;
-                _updateDelaytimer.Enabled = true;
-            }
-
-            void StartUpdateAsync(object timer, ElapsedEventArgs args)
-            {
-                _updateDelaytimer.Enabled = false;
-                _updateDelaytimer.Elapsed -= StartUpdateAsync;
-                foreach (var value in Values.Where(x => x != sender))
-                    _ = Task.Run(() => value.Update(_data));
-            }
+            
+            foreach (var value in Values.Where(x => x != sender))
+                _ = value.UpdateAsync(_data);
         }
     }
 }

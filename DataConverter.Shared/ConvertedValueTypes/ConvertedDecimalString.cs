@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace DataConverter.Shared.ConvertedValueTypes
 {
     public class ConvertedDecimalString : ConvertedValue<string>
     {
+        public ConvertedDecimalString(Func<Action, Task> uiThreadInvoker) : base(uiThreadInvoker)
+        {
+        }
+
         public override string Name => "Decimal String";
 
         protected override byte[] ToBytes(string value) => Converter.ParseDecimalString(value);

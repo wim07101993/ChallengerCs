@@ -4,7 +4,6 @@ using Microsoft.UI.Xaml.Controls;
 
 using Windows.Foundation.Metadata;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 
 namespace DataConverter.Uwp.Views
 {
@@ -12,8 +11,11 @@ namespace DataConverter.Uwp.Views
     {
         public MainPage()
         {
+            Current = this;
             InitializeComponent();
         }
+
+        public static MainPage Current { get; private set; }
 
         public string AppTitleFromSystem => Windows.ApplicationModel.Package.Current.DisplayName;
 

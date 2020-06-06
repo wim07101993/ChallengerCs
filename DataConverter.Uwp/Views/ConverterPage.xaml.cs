@@ -1,4 +1,4 @@
-﻿using DataConverter.Shared;
+﻿using DataConverter.Uwp.ViewModels;
 
 using Windows.UI.Xaml.Controls;
 
