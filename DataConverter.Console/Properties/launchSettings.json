@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DataConverter.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "-i 10 -t Int -v -c DotNet -p BinaryString"
+    }
+  }
+}
