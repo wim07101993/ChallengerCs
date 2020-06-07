@@ -1,7 +1,7 @@
 # ChallengerCs
 
 ChallengerCs challenges you to write some algorithms in C#. The challenge just
-has one rule: **it must work**. To verify whether it works, unit tests and 
+has one rule: **it must work**. To verify whether it works, unit tests and
 benchmarks are written, ready to test.
 
 To keep comparisons fair, there are different categories to enter in:
@@ -36,17 +36,15 @@ something to keep in mind.
 
 ### Obfuscation / Source length
 
-This one might be close to the performance challenge but here short and 
+This one might be close to the performance challenge but here short and
 obfuscated source code is the goal. To show others what happens it is
-preferable to add a private non obfuscated method or comments explaining 
+preferable to add a private non obfuscated method or comments explaining
 the flow.
 
 ## How participate
 
-### Solve challenges
-
-1. Create a separate branch under `challenge-solutions` (eg: 
-  `challenge-solutions\wim07101993`)
+1. Create a separate branch under `challenge-solutions` (eg:
+   `challenge-solutions\wim07101993`)
 2. Implement the functionality as you think best.
 3. Test code.
 4. Create a pull request.
@@ -83,20 +81,20 @@ If you have issues with anything, just post an issue.
 
 # Visual studio solution overview
 
-| Item                 | Description                                    |
-|:---------------------|:-----------------------------------------------|
-| Core                 | Library project (`.netstandard2.0`) containing the logic to convert the data. |
-||
-| **Applications**     | Applications based on the library functionality. |
-| Console              | Console application project (`.netcore3.1`) that uses the library functionality. |
+| Item                 | Description                                                                               |
+| :------------------- | :---------------------------------------------------------------------------------------- |
+| Core                 | Library project (`.netstandard2.0`) containing the logic to convert the data.             |
+|                      |
+| **Applications**     | Applications based on the library functionality.                                          |
+| Console              | Console application project (`.netcore3.1`) that uses the library functionality.          |
 | Shared               | Library project (`.netstandard2.0`) containing shared items for the WPF and UWP projects. |
-| UWP                  | UWP application project () that uses the library functionality. |
-| WPF                  | WPF application project (`.netcore3.1`) that uses the library functionality. |
-||
-| **Solution items**   | Files on solution level.                       |
-| `.editorconifg`-file | containing the code-style rules to program in. |
-||
-| **Testing**          | Projects to test the written code.              |
-| Benchmark            | A project to benchmark the challenge           |
-| Test                 | A project to test the challenge with unit tests. |
-| TestData             | A project containing mock-data to do the unit-tests/benchmarks. |
+| UWP                  | UWP application project () that uses the library functionality.                           |
+| WPF                  | WPF application project (`.netcore3.1`) that uses the library functionality.              |
+|                      |
+| **Solution items**   | Files on solution level.                                                                  |
+| `.editorconifg`-file | containing the code-style rules to program in.                                            |
+|                      |
+| **Testing**          | Projects to test the written code.                                                        |
+| Benchmark            | A project to benchmark the challenge                                                      |
+| Test                 | A project to test the challenge with unit tests.                                          |
+| TestData             | A project containing mock-data to do the unit-tests/benchmarks.                           |
