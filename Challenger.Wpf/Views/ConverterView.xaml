@@ -101,7 +101,7 @@
                                                     </material:ColorZone>
                                                     <material:ColorZone
                                                         x:Name="On"
-                                                        Background="{DynamicResource PrimaryHueMidBrush}"
+                                                        Background="{DynamicResource SecondaryAccentBrush}"
                                                         Opacity="0">
                                                         <TextBlock Foreground="{DynamicResource MaterialDesignDarkForeground}" Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                                     </material:ColorZone>
@@ -158,7 +158,7 @@
             </ItemsControl>
 
             <WrapPanel>
-                <GroupBox>
+                <GroupBox material:ColorZoneAssist.Mode="Accent">
                     <GroupBox.Header>
                         <StackPanel Orientation="Horizontal">
                             <material:PackIcon
@@ -208,7 +208,7 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox>
+                <GroupBox material:ColorZoneAssist.Mode="Accent">
                     <GroupBox.Header>
                         <StackPanel Orientation="Horizontal">
                             <material:PackIcon
