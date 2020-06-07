@@ -1,4 +1,4 @@
-﻿using DataConverter.Core.Converters;
+﻿using Challenger.Core.Converters;
 using DataConverter.Core.TestData;
 
 using NUnit.Framework;

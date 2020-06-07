@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataConverter.Core.TestData\DataConverter.Core.TestData.csproj" />
-    <ProjectReference Include="..\DataConverter.Core\DataConverter.Core.csproj" />
+    <ProjectReference Include="..\Challenger.Core\Challenger.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using DataConverter.Core.Converters;
+﻿using Challenger.Core.Converters;
 
 namespace DataConverter.Core.Tests.Tests
 {

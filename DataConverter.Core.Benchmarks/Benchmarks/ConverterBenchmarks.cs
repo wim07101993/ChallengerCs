@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 
-using DataConverter.Core.Converters;
+using Challenger.Core.Converters;
 using DataConverter.Core.TestData;
 
 namespace DataConverter.Core.Benchmarks.Benchmarks
