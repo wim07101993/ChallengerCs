@@ -63,7 +63,7 @@ namespace Challenger.Uwp
             switch (Window.Current.Content)
             {
                 case MainPage rootPage:
-                    rootFrame = (Frame)rootPage.FindName("rootFrame");
+                    rootFrame = (Frame)rootPage.FindName("RootFrame");
                     break;
 
                 default:
