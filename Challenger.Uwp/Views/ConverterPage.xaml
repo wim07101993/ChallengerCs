@@ -1,0 +1,113 @@
+﻿<Page
+    x:Class="Challenger.Uwp.Views.ConverterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <controls:DockPanel>
+        <controls:DockPanel controls:DockPanel.Dock="Top">
+            <!--<StackPanel controls:DockPanel.Dock="Left" Orientation="Horizontal">
+                <AppBarButton
+                    VerticalAlignment="Center"
+                    Icon="Cut"
+                    Label="Cut" />
+                <AppBarButton
+                    VerticalAlignment="Center"
+                    Icon="Copy"
+                    Label="Copy" />
+                <AppBarButton
+                    VerticalAlignment="Center"
+                    Icon="Paste"
+                    Label="Paste" />
+            </StackPanel>-->
+
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock
+                    Margin="16,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Converter" />
+                <ComboBox
+                    Width="200"
+                    Margin="8,0,0,0"
+                    VerticalAlignment="Center"
+                    ItemsSource="{x:Bind ViewModel.Converters}"
+                    SelectedIndex="{x:Bind ViewModel.SelectedConverterIndex}" />
+
+                <TextBlock
+                    Margin="16,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Endianness:" />
+
+                <!--  TODO Enable endiannesses  -->
+                <ComboBox
+                    Width="200"
+                    Margin="8,0,16,0"
+                    VerticalAlignment="Center"
+                    IsEnabled="False">
+                    <ComboBoxItem Content="Little-endian" IsSelected="True" />
+                    <ComboBoxItem Content="Middle-endian" />
+                    <ComboBoxItem Content="Big-endian" />
+                </ComboBox>
+            </StackPanel>
+        </controls:DockPanel>
+
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Margin="0,24,0,4" Orientation="Horizontal">
+                    <SymbolIcon
+                        Width="32"
+                        Height="32"
+                        Symbol="Character" />
+                    <TextBlock
+                        VerticalAlignment="Bottom"
+                        Style="{StaticResource SubtitleTextBlockStyle}"
+                        Text="String formatting" />
+                </StackPanel>
+
+                <TextBlock Margin="0,16,0,4" Text="Binary string" />
+                <TextBox Text="{x:Bind ViewModel.BinaryString.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Octal string" />
+                <TextBox Text="{x:Bind ViewModel.OctalString.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Decimal string" />
+                <TextBox Text="{x:Bind ViewModel.DecimalString.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Hexadecimal string" />
+                <TextBox Text="{x:Bind ViewModel.HexString.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Ascii string" />
+                <TextBox Text="{x:Bind ViewModel.AsciiString.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="UTF8 string" />
+                <TextBox Text="{x:Bind ViewModel.Utf8String.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="UTF32 string" />
+                <TextBox Text="{x:Bind ViewModel.Utf32String.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <StackPanel Margin="0,32,0,4" Orientation="Horizontal">
+                    <FontIcon
+                        Width="32"
+                        Height="32"
+                        FontFamily="Segoe MDL2 Assets"
+                        Glyph="&#xE9BC;" />
+                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Number formatting" />
+                </StackPanel>
+
+                <TextBlock Margin="0,16,0,4" Text="Unsigned int16" />
+                <TextBox Text="{x:Bind ViewModel.UShort.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Int16" />
+                <TextBox Text="{x:Bind ViewModel.Short.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Unsigned int32" />
+                <TextBox Text="{x:Bind ViewModel.UInt.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Int32" />
+                <TextBox Text="{x:Bind ViewModel.Int.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Unsigned int64" />
+                <TextBox Text="{x:Bind ViewModel.ULong.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Int64" />
+                <TextBox Text="{x:Bind ViewModel.Long.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Float32" />
+                <TextBox Text="{x:Bind ViewModel.Float.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Float64" />
+                <TextBox Text="{x:Bind ViewModel.Double.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,16,0,4" Text="Float128" />
+                <TextBox Text="{x:Bind ViewModel.Decimal.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+        </ScrollViewer>
+    </controls:DockPanel>
+</Page>
