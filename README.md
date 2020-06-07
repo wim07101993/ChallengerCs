@@ -4,12 +4,12 @@ ChallengerCs challenges you to write some algorithms in C#. The challenge just
 has one rule: **it must work**. To verify whether it works, unit tests and 
 benchmarks are written, ready to test.
 
-To keep comparissons fair, there are different categories to enter in:
+To keep comparisons fair, there are different categories to enter in:
 
 - `.Net`
 - `Linq`
 - Performance
-- Obsucation / Source length
+- Obfuscation / Source length
 
 ## Challenge categories
 
@@ -31,17 +31,19 @@ me otherwise.
 ### Performance
 
 The performance challenge is quite obvious I think. Try to write code that
-has the best performacne. The main-goal is execution time but memory is also
+has the best performance. The main-goal is execution time but memory is also
 something to keep in mind.
 
 ### Obfuscation / Source length
 
 This one might be close to the performance challenge but here short and 
-obfuscated source code is the gloal. To show others what happens it is
+obfuscated source code is the goal. To show others what happens it is
 preferable to add a private non obfuscated method or comments explaining 
 the flow.
 
 ## How participate
+
+### Solve challenges
 
 1. Create a separate branch under `challenge-solutions` (eg: 
   `challenge-solutions\wim07101993`)
@@ -49,11 +51,37 @@ the flow.
 3. Test code.
 4. Create a pull request.
 
-Or help me judge which code is best in it's category.
+The 'best' code will be used in the master branch.
 
-The best code will be used in the master branch.
+## Be a judge
 
-## Visual studio solution overview
+Help me judge which code is best in it's category.
+
+To judge, just comment on commits/pull requests or issues. Again here is a
+general rule: Keep it nice!. Keep in mind that this is a fun project and
+everyone participating is doing this to relax and have fun. Next to that 
+some participants might be less experienced than you and not have the same
+insights yet or have a different point of view.
+
+Bottom line: Respect the participants and be nice to each other!. 
+
+(and when there is doubt: I am always right 😁)
+
+## Help with development
+
+This repo contains more than just an interface that should be implemented.
+There are application, unit test and benchmark projects to test the 
+implementations.
+
+Whoever wants can also help improving these in the `development` and feature
+branches.
+
+## Issues
+
+If you have issues with anything, just post an issue.
+
+
+# Visual studio solution overview
 
 | Item                 | Description                                    |
 |:---------------------|:-----------------------------------------------|
@@ -68,7 +96,7 @@ The best code will be used in the master branch.
 | **Solution items**   | Files on solution level.                       |
 | `.editorconifg`-file | containing the code-style rules to program in. |
 ||
-| **Testing**          | Projects to test the writen code.              |
+| **Testing**          | Projects to test the written code.              |
 | Benchmark            | A project to benchmark the challenge           |
 | Test                 | A project to test the challenge with unit tests. |
 | TestData             | A project containing mock-data to do the unit-tests/benchmarks. |
