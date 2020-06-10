@@ -75,10 +75,6 @@
                 <TextBox Text="{x:Bind ViewModel.HexString.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Margin="0,16,0,4" Text="Ascii string" />
                 <TextBox Text="{x:Bind ViewModel.AsciiString.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Margin="0,16,0,4" Text="UTF8 string" />
-                <TextBox Text="{x:Bind ViewModel.Utf8String.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Margin="0,16,0,4" Text="UTF32 string" />
-                <TextBox Text="{x:Bind ViewModel.Utf32String.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <StackPanel Margin="0,32,0,4" Orientation="Horizontal">
                     <FontIcon

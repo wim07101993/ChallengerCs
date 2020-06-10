@@ -13,8 +13,6 @@ namespace DataConverter.Console
             "- DecimalString\r\n" +
             "- HexString\r\n" +
             "- AsciiString\r\n" +
-            "- Utf8String\r\n" +
-            "- Utf32String\r\n" +
             "- UShort\t(16 bit unsigned integer)\r\n" +
             "- Short\t(16 bit integer)\r\n" +
             "- UInt\t(32 bit unsigned integer)\r\n" +

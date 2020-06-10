@@ -59,8 +59,6 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
             _decimalStringBytes = _data.DecimalBytes.Bytes;
             _hexStringBytes = _data.DecimalBytes.Bytes;
             _asciiStringBytes = _data.Ascii.Bytes;
-            _utf8StringBytes = _data.Utf8.Bytes;
-            _utf32StringBytes = _data.Utf32.Bytes;
             _ushortBytes = _data.UShort.Bytes;
             _uintBytes = _data.UInt.Bytes;
             _ulongBytes = _data.ULong.Bytes;
@@ -76,8 +74,6 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
             _decimalString = _data.DecimalBytes.ShortDecimalString;
             _hexString = _data.DecimalBytes.ShortHexString;
             _asciiString = _data.Ascii.AsciiString;
-            _utf8String = _data.Utf8.Utf8String;
-            _utf32String = _data.Utf32.Utf32String;
             _ushort = _data.UShort.UShort;
             _uint = _data.UInt.UInt;
             _ulong = _data.ULong.ULong;
@@ -100,8 +96,6 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
         private byte[] _decimalStringBytes;
         private byte[] _hexStringBytes;
         private byte[] _asciiStringBytes;
-        private byte[] _utf8StringBytes;
-        private byte[] _utf32StringBytes;
         private byte[] _ushortBytes;
         private byte[] _uintBytes;
         private byte[] _ulongBytes;
@@ -126,12 +120,6 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
 
         [Benchmark]
         public string GetAsciiString() => converters[ConverterIndex].GetAsciiString(_asciiStringBytes);
-
-        [Benchmark]
-        public string GetUtf8String() => converters[ConverterIndex].GetUtf8String(_utf8StringBytes);
-
-        [Benchmark]
-        public string GetUtf32String() => converters[ConverterIndex].GetUtf32String(_utf32StringBytes);
 
         [Benchmark]
         public ushort GetUShort() => converters[ConverterIndex].GetUShort(_ushortBytes);
@@ -169,8 +157,6 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
         private string _decimalString;
         private string _hexString;
         private string _asciiString;
-        private string _utf8String;
-        private string _utf32String;
         private ushort _ushort;
         private uint _uint;
         private ulong _ulong;
@@ -195,12 +181,6 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
 
         [Benchmark]
         public byte[] ToAsciiString() => converters[ConverterIndex].GetAsciiBytes(_asciiString);
-
-        [Benchmark]
-        public byte[] ToUtf8String() => converters[ConverterIndex].GetUtf8Bytes(_utf8String);
-
-        [Benchmark]
-        public byte[] ToUtf32String() => converters[ConverterIndex].GetUtf32Bytes(_utf32String);
 
         [Benchmark]
         public byte[] ToUShort() => converters[ConverterIndex].GetBytes(_ushort);

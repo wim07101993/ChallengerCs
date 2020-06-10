@@ -83,29 +83,22 @@ GetHexString("68 65 6C 6C 6F 20 77 6F 72 6C 64")
 ### `string Get*Encoding*tring(byte[] bytes)`
 
 Converts a `byte[]` (`bytes`) to a `string` that represents the bytes in the 
-specified encoding (ASCII, UTF8 or UTF32).
+specified encoding (ASCII).
 
 [Wikipedia ASCII](https://en.wikipedia.org/wiki/ASCII)
 [ASCII table](http://www.asciitable.com/)
 
-[Wikipedia UTF8](https://en.wikipedia.org/wiki/UTF-8)
-[UTF8 table](https://www.utf8-chartable.de/)
-
-[Wikipedia UTF32](https://en.wikipedia.org/wiki/UTF-32)
-[UTF32 table](https://www.fileformat.info/info/charset/UTF-32/list.htm)
-
 #### Example
 
 ``` C#
-GetUtf8String(new byte[] { 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64 })
+GetAsciiString(new byte[] { 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64 })
     .Should()
     .Be("Hello world");
 ```
 
 ### `byte[] Get*Encodin*Bytes(string s)`
 
-Parses a string encoded in the given encoding (`Encoding`: ASCII, UTF8
- or UTF32).
+Parses a string encoded in the given encoding (`Encoding`: ASCII).
  
 #### Example
 
