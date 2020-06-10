@@ -197,14 +197,6 @@
                             material:HintAssist.HelperText="Data formatted in ASCII encoding"
                             material:HintAssist.Hint="ASCII String"
                             Text="{Binding AsciiString.Value, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBox
-                            material:HintAssist.HelperText="Data formatted in UTF8 encoding"
-                            material:HintAssist.Hint="UTF8 String"
-                            Text="{Binding Utf8String.Value, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBox
-                            material:HintAssist.HelperText="Data formatted in UTF32 encoding"
-                            material:HintAssist.Hint="UTF32 String"
-                            Text="{Binding Utf32String.Value, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
                 </GroupBox>
 

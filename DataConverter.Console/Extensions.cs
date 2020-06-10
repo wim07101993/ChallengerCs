@@ -26,8 +26,6 @@ namespace DataConverter.Console
                 ValueType.DecimalString => converter.ParseDecimalString(options.Input),
                 ValueType.HexString => converter.ParseHexString(options.Input),
                 ValueType.AsciiString => converter.GetAsciiBytes(options.Input),
-                ValueType.Utf8String => converter.GetUtf8Bytes(options.Input),
-                ValueType.Utf32String => converter.GetUtf32Bytes(options.Input),
                 ValueType.UShort => converter.GetBytes(ushort.Parse(options.Input)),
                 ValueType.Short => converter.GetBytes(short.Parse(options.Input)),
                 ValueType.UInt => converter.GetBytes(uint.Parse(options.Input)),

@@ -15,8 +15,6 @@ namespace Challenger.Shared
         ConvertedDecimalString DecimalString { get; }
         ConvertedHexString HexString { get; }
         ConvertedAsciiString AsciiString { get; }
-        ConvertedUtf8String Utf8String { get; }
-        ConvertedUtf32String Utf32String { get; }
         ConvertedValue<ushort> UShort { get; }
         ConvertedValue<short> Short { get; }
         ConvertedValue<uint> UInt { get; }

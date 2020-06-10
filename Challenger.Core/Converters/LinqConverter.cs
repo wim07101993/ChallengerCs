@@ -50,14 +50,6 @@
 
         public ushort GetUShort(byte[] bytes) => default;
 
-        public byte[] GetUtf32Bytes(string s) => default;
-
-        public string GetUtf32String(byte[] bytes) => default;
-
-        public byte[] GetUtf8Bytes(string s) => default;
-
-        public string GetUtf8String(byte[] bytes) => default;
-
         public byte[] ParseBinaryString(string s) => default;
 
         public byte[] ParseDecimalString(string s) => default;

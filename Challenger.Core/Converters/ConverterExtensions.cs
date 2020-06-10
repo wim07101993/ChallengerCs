@@ -10,7 +10,7 @@ namespace Challenger.Core.Converters
         {
             var type = typeof(T);
             if (type == typeof(string))
-                return (T)(object)converter.GetUtf8String(bytes);
+                return (T)(object)converter.GetAsciiString(bytes);
             if (type == typeof(ushort))
                 return (T)(object)converter.GetUShort(bytes);
             if (type == typeof(short))
@@ -37,7 +37,7 @@ namespace Challenger.Core.Converters
         {
             var type = typeof(T);
             if (type == typeof(string))
-                return converter.GetUtf8Bytes((string)(object)value);
+                return converter.GetAsciiBytes((string)(object)value);
             if (type == typeof(ushort))
                 return converter.GetBytes((ushort)(object)value);
             if (type == typeof(short))

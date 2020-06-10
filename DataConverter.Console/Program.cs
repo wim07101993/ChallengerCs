@@ -75,8 +75,6 @@ namespace DataConverter.Console
             C.WriteLine($"Decimal string:\t{TryGetConvertedValue(converter.GetDecimalString, bytes)}");
             C.WriteLine($"Hex string:\t{TryGetConvertedValue(converter.GetHexString, bytes)}");
             C.WriteLine($"ASCII string:\t{TryGetConvertedValue(converter.GetAsciiString, bytes)}");
-            C.WriteLine($"UTF8 string:\t{TryGetConvertedValue(converter.GetUtf8String, bytes)}");
-            C.WriteLine($"UTF32 string:\t{TryGetConvertedValue(converter.GetUtf32String, bytes)}");
             C.WriteLine($"UShort:\t\t{TryGetConvertedValue(converter.GetUShort, bytes)}");
             C.WriteLine($"Short:\t\t{TryGetConvertedValue(converter.GetShort, bytes)}");
             C.WriteLine($"UInt:\t\t{TryGetConvertedValue(converter.GetUInt, bytes)}");
@@ -96,8 +94,6 @@ namespace DataConverter.Console
                 ValueType.DecimalString => $"Decimal string:\t{TryGetConvertedValue(converter.GetDecimalString, bytes)}",
                 ValueType.HexString => $"Hex string:\t{TryGetConvertedValue(converter.GetHexString, bytes)}",
                 ValueType.AsciiString => $"ASCII string:\t{TryGetConvertedValue(converter.GetAsciiString, bytes)}",
-                ValueType.Utf8String => $"UTF8 string:\t{TryGetConvertedValue(converter.GetUtf8String, bytes)}",
-                ValueType.Utf32String => $"UTF32 string:\t{TryGetConvertedValue(converter.GetUtf32String, bytes)}",
                 ValueType.UShort => $"UShort:\t\t{TryGetConvertedValue(converter.GetUShort, bytes)}",
                 ValueType.Short => $"Short:\t\t{TryGetConvertedValue(converter.GetShort, bytes)}",
                 ValueType.UInt => $"UInt:\t\t{TryGetConvertedValue(converter.GetUInt, bytes)}",
@@ -119,8 +115,6 @@ namespace DataConverter.Console
                 ValueType.DecimalString => converter.GetDecimalString,
                 ValueType.HexString => converter.GetHexString,
                 ValueType.AsciiString => converter.GetAsciiString,
-                ValueType.Utf8String => converter.GetUtf8String,
-                ValueType.Utf32String => converter.GetUtf32String,
                 ValueType.UShort => x => converter.GetUShort(x),
                 ValueType.Short => x => converter.GetShort(x),
                 ValueType.UInt => x => converter.GetUInt(x),
