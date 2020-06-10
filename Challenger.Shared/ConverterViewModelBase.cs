@@ -40,8 +40,6 @@ namespace Challenger.Shared
             DecimalString = new ConvertedDecimalString(InvokeOnSTAThread);
             HexString = new ConvertedHexString(InvokeOnSTAThread);
             AsciiString = new ConvertedAsciiString(InvokeOnSTAThread);
-            Utf8String = new ConvertedUtf8String(InvokeOnSTAThread);
-            Utf32String = new ConvertedUtf32String(InvokeOnSTAThread);
             UShort = new ConvertedValue<ushort>(InvokeOnSTAThread);
             Short = new ConvertedValue<short>(InvokeOnSTAThread);
             UInt = new ConvertedValue<uint>(InvokeOnSTAThread);
@@ -57,8 +55,6 @@ namespace Challenger.Shared
             DecimalString.OnValueChanged += OnValueChangedAsync;
             HexString.OnValueChanged += OnValueChangedAsync;
             AsciiString.OnValueChanged += OnValueChangedAsync;
-            Utf8String.OnValueChanged += OnValueChangedAsync;
-            Utf32String.OnValueChanged += OnValueChangedAsync;
             UShort.OnValueChanged += OnValueChangedAsync;
             Short.OnValueChanged += OnValueChangedAsync;
             UInt.OnValueChanged += OnValueChangedAsync;
@@ -109,8 +105,6 @@ namespace Challenger.Shared
             DecimalString,
             HexString,
             AsciiString,
-            Utf8String,
-            Utf32String,
             UShort,
             Short,
             UInt,
@@ -127,8 +121,6 @@ namespace Challenger.Shared
         public ConvertedDecimalString DecimalString { get; }
         public ConvertedHexString HexString { get; }
         public ConvertedAsciiString AsciiString { get; }
-        public ConvertedUtf8String Utf8String { get; }
-        public ConvertedUtf32String Utf32String { get; }
         public ConvertedValue<ushort> UShort { get; }
         public ConvertedValue<short> Short { get; }
         public ConvertedValue<uint> UInt { get; }

@@ -42,20 +42,6 @@
         string GetAsciiString(byte[] bytes);
 
         /// <summary>
-        ///     Converts a <see cref="byte[]" /> to <see cref="string" /> using UTF8.
-        /// </summary>
-        /// <param name="bytes">The bytes to convert.</param>
-        /// <returns>The UTF8 string representing the bytes.</returns>
-        string GetUtf8String(byte[] bytes);
-
-        /// <summary>
-        ///     Converts a <see cref="byte[]" /> to <see cref="string" /> using UTF32.
-        /// </summary>
-        /// <param name="bytes">The bytes to convert.</param>
-        /// <returns>The UTF32 string representing the bytes.</returns>
-        string GetUtf32String(byte[] bytes);
-
-        /// <summary>
         ///     Converts a <see cref="byte[]" /> to a <see cref="ushort" />.
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
@@ -220,21 +206,5 @@
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
         byte[] GetAsciiBytes(string s);
-
-        /// <summary>
-        ///     Converts a UTF8 <see cref="string" /> to its representing <see
-        ///     cref="byte[]" />.
-        /// </summary>
-        /// <param name="s">The <see cref="string" /> to convert.</param>
-        /// <returns>The bytes representing the <see cref="string" /></returns>
-        byte[] GetUtf8Bytes(string s);
-
-        /// <summary>
-        ///     Converts a UTF32 <see cref="string" /> to its representing <see
-        ///     cref="byte[]" />.
-        /// </summary>
-        /// <param name="s">The <see cref="string" /> to convert.</param>
-        /// <returns>The bytes representing the <see cref="string" /></returns>
-        byte[] GetUtf32Bytes(string s);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -6,116 +7,134 @@ namespace Challenger.Core.Converters
 {
     public class DotNetConverter : IConverter
     {
-        public byte[] GetAsciiBytes(string s) => Encoding.ASCII.GetBytes(s);
+        #region array string
 
-        public string GetAsciiString(byte[] bytes) => Encoding.ASCII.GetString(bytes);
+        public string GetBinaryString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 2));
 
-        public string GetBinaryString(byte[] bytes)
+        public string GetOctalString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 8));
+
+        public string GetDecimalString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 10));
+
+        public string GetHexString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 16));
+
+        private string GetArrayString(byte[] bytes, Func<byte, string> toString)
         {
             return bytes
-                .Select(x => Convert.ToString(x, 2))
-                .Aggregate(new StringBuilder(), (b, x) => b.Append($"{x} "))
-                .ToString()
-                .Trim();
+              .Reverse() // little endian
+              .Select(toString)
+              .Aggregate(new StringBuilder(), (b, x) => b.Append($"{x} "))
+              .ToString()
+              .Trim();
         }
 
-        public byte[] GetBytes(ushort s) => BitConverter.GetBytes(s);
+        public byte[] ParseBinaryString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 2));
 
-        public byte[] GetBytes(uint i) => BitConverter.GetBytes(i);
+        public byte[] ParseOctalString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 8));
 
-        public byte[] GetBytes(ulong l) => BitConverter.GetBytes(l);
+        public byte[] ParseDecimalString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 10));
 
-        public byte[] GetBytes(short s) => BitConverter.GetBytes(s);
+        public byte[] ParseHexString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 16));
 
-        public byte[] GetBytes(int i) => BitConverter.GetBytes(i);
-
-        public byte[] GetBytes(long l) => BitConverter.GetBytes(l);
-
-        public byte[] GetBytes(float f) => BitConverter.GetBytes(f);
-
-        public byte[] GetBytes(double d) => BitConverter.GetBytes(d);
-
-        public unsafe byte[] GetBytes(decimal d)
-        {
-            var bytes = new byte[16];
-            fixed (byte* b = bytes)
-                *(decimal*)b = d;
-            return bytes;
-        }
-
-        public unsafe decimal GetDecimal(byte[] bytes)
-        {
-            fixed (byte* pbyte = &bytes[0])
-                return *(long*)pbyte;
-        }
-
-        public string GetDecimalString(byte[] bytes)
-        {
-            return bytes
-                .Select(x => Convert.ToString(x, 10))
-                .Aggregate(new StringBuilder(), (b, x) => b.Append($"{x} "))
-                .ToString()
-                .Trim();
-        }
-
-        public double GetDouble(byte[] bytes) => BitConverter.ToDouble(bytes, 0);
-
-        public float GetFloat(byte[] bytes) => BitConverter.ToSingle(bytes, 0);
-
-        public string GetHexString(byte[] bytes)
-        {
-            return bytes
-                .Select(x => Convert.ToString(x, 16))
-                .Aggregate(new StringBuilder(), (b, x) => b.Append($"{x} "))
-                .ToString()
-                .Trim();
-        }
-
-        public int GetInt(byte[] bytes) => BitConverter.ToInt32(bytes, 0);
-
-        public long GetLong(byte[] bytes) => BitConverter.ToInt64(bytes, 0);
-
-        public string GetOctalString(byte[] bytes)
-        {
-            return bytes
-                .Select(x => Convert.ToString(x, 8))
-                .Aggregate(new StringBuilder(), (b, x) => b.Append($"{x} "))
-                .ToString()
-                .Trim();
-        }
-
-        public short GetShort(byte[] bytes) => BitConverter.ToInt16(bytes, 0);
-
-        public uint GetUInt(byte[] bytes) => BitConverter.ToUInt32(bytes, 0);
-
-        public ulong GetULong(byte[] bytes) => BitConverter.ToUInt64(bytes, 0);
-
-        public ushort GetUShort(byte[] bytes) => BitConverter.ToUInt16(bytes, 0);
-
-        public byte[] GetUtf32Bytes(string s) => Encoding.UTF32.GetBytes(s);
-
-        public string GetUtf32String(byte[] bytes) => Encoding.UTF32.GetString(bytes);
-
-        public byte[] GetUtf8Bytes(string s) => Encoding.UTF8.GetBytes(s);
-
-        public string GetUtf8String(byte[] bytes) => Encoding.UTF8.GetString(bytes);
-
-        public byte[] ParseBinaryString(string s)
+        private byte[] ParseArrayString(string s, Func<string, byte> fromString)
         {
             var split = s.Split(new[] { ' ', ':', '-' }, StringSplitOptions.RemoveEmptyEntries);
 
             var bytes = new byte[split.Length];
 
             for (var i = 0; i < split.Length; ++i)
-                bytes[i] = Convert.ToByte(split[i], 2);
+                bytes[i] = fromString(split[split.Length - 1 - i]);
 
             return bytes;
         }
 
-        public byte[] ParseDecimalString(string s) => default;
+        #endregion array string
 
-        public byte[] ParseHexString(string s) => default;
+        #region encoding
 
-        public byte[] ParseOctalString(string s) => default;
+        public string GetAsciiString(byte[] bytes) => Encoding.ASCII.GetString(bytes);
+
+        public byte[] GetAsciiBytes(string s) => Encoding.ASCII.GetBytes(s);
+
+        #endregion encoding
+
+        #region to number
+
+        public ushort GetUShort(byte[] bytes) => BitConverter.ToUInt16(ResizeArray(bytes, 2), 0);
+
+        public short GetShort(byte[] bytes) => BitConverter.ToInt16(ResizeArray(bytes, 2), 0);
+
+        public uint GetUInt(byte[] bytes) => BitConverter.ToUInt32(ResizeArray(bytes, 4), 0);
+
+        public int GetInt(byte[] bytes) => BitConverter.ToInt32(ResizeArray(bytes, 4), 0);
+
+        public ulong GetULong(byte[] bytes) => BitConverter.ToUInt64(ResizeArray(bytes, 8), 0);
+
+        public long GetLong(byte[] bytes) => BitConverter.ToInt64(ResizeArray(bytes, 8), 0);
+
+        public float GetFloat(byte[] bytes) => BitConverter.ToSingle(ResizeArray(bytes, 4), 0);
+
+        public double GetDouble(byte[] bytes) => BitConverter.ToDouble(ResizeArray(bytes, 8), 0);
+
+        public unsafe decimal GetDecimal(byte[] bytes)
+        {
+            bytes = ResizeArray(bytes, 16);
+            fixed (byte* pbyte = &bytes[0])
+                return *(decimal*)pbyte;
+        }
+
+        public byte[] ResizeArray(byte[] bytes, int size)
+        {
+            var ret = new byte[size];
+            Array.Copy(bytes, ret, Math.Min(bytes.Length, size));
+            return ret;
+        }
+
+        #endregion to number
+
+        #region from number
+
+        public byte[] GetBytes(ushort s) => TrimArray(BitConverter.GetBytes(s));
+
+        public byte[] GetBytes(short s) => TrimArray(BitConverter.GetBytes(s));
+
+        public byte[] GetBytes(uint i) => TrimArray(BitConverter.GetBytes(i));
+
+        public byte[] GetBytes(int i) => TrimArray(BitConverter.GetBytes(i));
+
+        public byte[] GetBytes(ulong l) => TrimArray(BitConverter.GetBytes(l));
+
+        public byte[] GetBytes(long l) => TrimArray(BitConverter.GetBytes(l));
+
+        public byte[] GetBytes(float f) => TrimArray(BitConverter.GetBytes(f));
+
+        public byte[] GetBytes(double d) => TrimArray(BitConverter.GetBytes(d));
+
+        public unsafe byte[] GetBytes(decimal d)
+        {
+            var bytes = new byte[16];
+            fixed (byte* b = bytes)
+                *(decimal*)b = d;
+
+            return TrimArray(bytes);
+        }
+
+        private static byte[] TrimArray(byte[] bytes)
+        {
+            var i = bytes.Length - 1;
+            if (bytes[i] != 0)
+                return bytes;
+
+            for (i--; i >= 0; i--)
+            {
+                if (bytes[i] != 0)
+                    break;
+            }
+
+            return i == -1 // all values are 0
+                ? new byte[] { 0 }
+                : bytes.Take(i + 1).ToArray();
+        }
+
+        #endregion from number
     }
 }

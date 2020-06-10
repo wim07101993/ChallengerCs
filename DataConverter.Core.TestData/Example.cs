@@ -12,8 +12,6 @@
         public string HexString { get; set; }
         public string ShortHexString { get; set; }
         public string AsciiString { get; set; }
-        public string Utf8String { get; set; }
-        public string Utf32String { get; set; }
         public ushort UShort { get; set; }
         public uint UInt { get; set; }
         public ulong ULong { get; set; }

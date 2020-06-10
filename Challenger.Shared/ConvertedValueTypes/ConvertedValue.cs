@@ -67,7 +67,7 @@ namespace Challenger.Shared.ConvertedValueTypes
                 float _ => "Float32",
                 double _ => "Float64",
                 decimal _ => "Float128",
-                _ => "UTF8 string",
+                _ => "ASCII string",
             };
         }
 

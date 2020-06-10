@@ -33,8 +33,8 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore DataConverter.WPF
+      run: dotnet restore Challenger.WPF
     - name: Build
-      run: dotnet build DataConverter.WPF --configuration Release --no-restore
+      run: dotnet build Challenger.WPF --configuration Release --no-restore
     - name: Test
-      run: dotnet test DataConverter.WPF --no-restore --verbosity normal
+      run: dotnet test Challenger.WPF --no-restore --verbosity normal
