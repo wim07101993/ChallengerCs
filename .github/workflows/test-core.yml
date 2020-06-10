@@ -22,8 +22,8 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore Challenger.Core.Tests
+      run: dotnet restore DataConverter.Core.Tests
     - name: Build
-      run: dotnet build Challenger.Core.Tests --configuration Release --no-restore
+      run: dotnet build DataConverter.Core.Tests --configuration Release --no-restore
     - name: Test
-      run: dotnet test Challenger.Core.Tests --no-restore --verbosity normal
+      run: dotnet test DataConverter.Core.Tests --no-restore --verbosity normal
