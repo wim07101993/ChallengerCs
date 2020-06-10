@@ -56,7 +56,7 @@ namespace DataConverter.Core.Tests.Tests
         [TestCase(nameof(MockData.Float))]
         [TestCase(nameof(MockData.Double))]
         [TestCase(nameof(MockData.Decimal))]
-        public void ParseUShortTest(string caseKey)
+        public void GetUShortBytesTest(string caseKey)
         {
             var (test, solution) = parseUShortTestCases.Get<ushort, byte[]>(caseKey);
             _ = Converter.GetBytes(test)
@@ -112,7 +112,7 @@ namespace DataConverter.Core.Tests.Tests
         [TestCase(nameof(MockData.Float))]
         [TestCase(nameof(MockData.Double))]
         [TestCase(nameof(MockData.Decimal))]
-        public void ParseUIntTest(string caseKey)
+        public void GetUIntBytesTest(string caseKey)
         {
             var (test, solution) = parseUIntTestCases.Get<uint, byte[]>(caseKey);
             _ = Converter.GetBytes(test)
@@ -168,7 +168,7 @@ namespace DataConverter.Core.Tests.Tests
         [TestCase(nameof(MockData.Float))]
         [TestCase(nameof(MockData.Double))]
         [TestCase(nameof(MockData.Decimal))]
-        public void ParseULongTest(string caseKey)
+        public void GetULongBytesTest(string caseKey)
         {
             var (test, solution) = parseULongTestCases.Get<ulong, byte[]>(caseKey);
             _ = Converter.GetBytes(test)
@@ -224,7 +224,7 @@ namespace DataConverter.Core.Tests.Tests
         [TestCase(nameof(MockData.Float))]
         [TestCase(nameof(MockData.Double))]
         [TestCase(nameof(MockData.Decimal))]
-        public void ParseShortTest(string caseKey)
+        public void GetShortBytesTest(string caseKey)
         {
             var (test, solution) = parseShortTestCases.Get<short, byte[]>(caseKey);
             _ = Converter.GetBytes(test)
@@ -280,7 +280,7 @@ namespace DataConverter.Core.Tests.Tests
         [TestCase(nameof(MockData.Float))]
         [TestCase(nameof(MockData.Double))]
         [TestCase(nameof(MockData.Decimal))]
-        public void ParseIntTest(string caseKey)
+        public void GetIntBytesTest(string caseKey)
         {
             var (test, solution) = parseIntTestCases.Get<int, byte[]>(caseKey);
             _ = Converter.GetBytes(test)
@@ -336,7 +336,7 @@ namespace DataConverter.Core.Tests.Tests
         [TestCase(nameof(MockData.Float))]
         [TestCase(nameof(MockData.Double))]
         [TestCase(nameof(MockData.Decimal))]
-        public void ParseLongTest(string caseKey)
+        public void GetLongBytesTest(string caseKey)
         {
             var (test, solution) = parseLongTestCases.Get<long, byte[]>(caseKey);
             _ = Converter.GetBytes(test)
@@ -392,7 +392,7 @@ namespace DataConverter.Core.Tests.Tests
         [TestCase(nameof(MockData.Float))]
         [TestCase(nameof(MockData.Double))]
         [TestCase(nameof(MockData.Decimal))]
-        public void ParseFloatTest(string caseKey)
+        public void GetFloatBytesTest(string caseKey)
         {
             var (test, solution) = parseFloatTestCases.Get<float, byte[]>(caseKey);
             _ = Converter.GetBytes(test)
@@ -448,7 +448,7 @@ namespace DataConverter.Core.Tests.Tests
         [TestCase(nameof(MockData.Float))]
         [TestCase(nameof(MockData.Double))]
         [TestCase(nameof(MockData.Decimal))]
-        public void ParseDoubleTest(string caseKey)
+        public void GetDoubleBytesTest(string caseKey)
         {
             var (test, solution) = parseDoubleTestCases.Get<double, byte[]>(caseKey);
             _ = Converter.GetBytes(test)
@@ -485,7 +485,7 @@ namespace DataConverter.Core.Tests.Tests
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.Decimal))]
-        public void ParseDecimalTest(string caseKey)
+        public void GetDecimalBytesTest(string caseKey)
         {
             var (test, solution) = parseDecimalTestCases.Get<decimal, byte[]>(caseKey);
             _ = Converter.GetBytes(test)
