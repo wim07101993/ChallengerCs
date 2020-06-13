@@ -11,10 +11,10 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
     ///     By (un)commenting simple jobs, it is possible to modify on which runtimes the benchmark
     ///     should be done.
     /// </remarks>
-    [SimpleJob(RuntimeMoniker.Net48, baseline: true)]
-    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
+    //[SimpleJob(RuntimeMoniker.Net48)]
+    [SimpleJob(RuntimeMoniker.NetCoreApp31, baseline: true)]
     //[SimpleJob(RuntimeMoniker.NetCoreApp50)]
-    [SimpleJob(RuntimeMoniker.CoreRt31)]
+    //[SimpleJob(RuntimeMoniker.CoreRt31)]
     //[SimpleJob(RuntimeMoniker.CoreRt50)]
     //[SimpleJob(RuntimeMoniker.Mono)]
     [RPlotExporter]
@@ -38,16 +38,12 @@ namespace DataConverter.Core.Benchmarks.Benchmarks
         /// <summary>The mock data that will be used to run the benchmark.</summary>
         private readonly MockData _data = new MockData();
 
-        /// <summary>Amount of runs that should be done.</summary>
-        [Params(1000, 10000)]
-        public int n;
-
         /// <summary>
         ///     Index of the converter to use. For each value in the <see cref="ParamsAttribute" />,
         ///     the benchmark will run.
         ///     <para>The index corresponds to the <see cref="converters" /> field.</para>
         /// </summary>
-        [Params(0, 1, 2, 3)]
+        [Params(0)]//, 1, 2, 3)]
         public int ConverterIndex { get; set; }
 
         /// <summary>Initializes the benchmark.</summary>

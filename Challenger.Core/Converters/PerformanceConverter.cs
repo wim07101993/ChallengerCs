@@ -8,7 +8,22 @@ namespace Challenger.Core.Converters
     {
         #region array string
 
-        public string GetBinaryString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 2));
+        public string GetBinaryString(byte[] bytes)
+        {
+            var builder = new StringBuilder((bytes.Length * 9) - 1);
+
+            for (var j = 7; j >= 0; j--)
+                _ = builder.Append((bytes[0] & (1 << 0)) == 0 ? '0' : '1');
+
+            for (var i = bytes.Length - 1; i >= 0; i--)
+            {
+                _ = builder.Append('-');
+                for (var j = 7; j >= 0; j--)
+                    _ = builder.Append((bytes[i] & (1 << j)) == 0 ? '0' : '1');
+            }
+
+            return builder.ToString();
+        }
 
         public string GetOctalString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 8));
 
@@ -26,7 +41,58 @@ namespace Challenger.Core.Converters
               .Trim();
         }
 
-        public byte[] ParseBinaryString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 2));
+        public byte[] ParseBinaryString(string s)
+        {
+            var bytes = new byte[s.Length >> 1];
+            var byteCount = 0;
+            var byteStarted = false;
+            var bitIndex = 0;
+
+            for (var i = s.Length - 1; i >= 0; i--)
+            {
+                switch (s[i])
+                {
+                    case '0':
+                        bitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '1':
+                        bytes[byteCount] |= (byte)(1 << bitIndex);
+                        bitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    default:
+                        bitIndex = 0;
+                        if (byteStarted)
+                        {
+                            byteStarted = false;
+                            byteCount++;
+                        }
+                        break;
+                }
+
+                if (bitIndex == 8)
+                {
+                    byteStarted = false;
+                    byteCount++;
+                    bitIndex = 0;
+                }
+            }
+
+            if (byteCount == 0)
+                return new byte[1];
+
+            if (byteStarted)
+                byteCount++;
+
+            var result = new byte[byteCount];
+            for (var i = 0; i < byteCount; i++)
+                result[i] = bytes[i];
+
+            return result;
+        }
 
         public byte[] ParseOctalString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 8));
 
