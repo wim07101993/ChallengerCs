@@ -6,6 +6,7 @@
     <LangVersion>8</LangVersion>
     <AssemblyName>DataConverter</AssemblyName>
     <ApplicationIcon>ico.ico</ApplicationIcon>
+    <Configurations>Debug;Release;BenchmarkDebug</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

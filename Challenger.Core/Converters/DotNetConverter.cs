@@ -93,23 +93,23 @@ namespace Challenger.Core.Converters
 
         #region from number
 
-        public byte[] GetBytes(ushort s) => TrimArray(BitConverter.GetBytes(s));
+        public byte[] GetUShortBytes(ushort s) => TrimArray(BitConverter.GetBytes(s));
 
-        public byte[] GetBytes(short s) => TrimArray(BitConverter.GetBytes(s));
+        public byte[] GetShortBytes(short s) => TrimArray(BitConverter.GetBytes(s));
 
-        public byte[] GetBytes(uint i) => TrimArray(BitConverter.GetBytes(i));
+        public byte[] GetUIntBytes(uint i) => TrimArray(BitConverter.GetBytes(i));
 
-        public byte[] GetBytes(int i) => TrimArray(BitConverter.GetBytes(i));
+        public byte[] GetIntBytes(int i) => TrimArray(BitConverter.GetBytes(i));
 
-        public byte[] GetBytes(ulong l) => TrimArray(BitConverter.GetBytes(l));
+        public byte[] GetULongBytes(ulong l) => TrimArray(BitConverter.GetBytes(l));
 
-        public byte[] GetBytes(long l) => TrimArray(BitConverter.GetBytes(l));
+        public byte[] GetLongBytes(long l) => TrimArray(BitConverter.GetBytes(l));
 
-        public byte[] GetBytes(float f) => TrimArray(BitConverter.GetBytes(f));
+        public byte[] GetFloatBytes(float f) => TrimArray(BitConverter.GetBytes(f));
 
-        public byte[] GetBytes(double d) => TrimArray(BitConverter.GetBytes(d));
+        public byte[] GetDoubleBytes(double d) => TrimArray(BitConverter.GetBytes(d));
 
-        public unsafe byte[] GetBytes(decimal d)
+        public unsafe byte[] GetDecimalBytes(decimal d)
         {
             var bytes = new byte[16];
             fixed (byte* b = bytes)
