@@ -13,13 +13,11 @@ namespace Challenger.Wpf.ViewModels
         {
             ConverterMethodInfo = info ?? throw new ArgumentNullException(nameof(info));
             BenchmarkMethodInfo = typeof(ConverterBenchmarks).GetMethod(info.Name);
-            DisplayName = ConverterMethodInfo.GetDisplayName();
         }
 
         public MethodInfo ConverterMethodInfo { get; }
         public MethodInfo BenchmarkMethodInfo { get; }
-        public string DisplayName { get; }
 
-        public override string ToString() => DisplayName;
+        public override string ToString() => ConverterMethodInfo.Name;
     }
 }

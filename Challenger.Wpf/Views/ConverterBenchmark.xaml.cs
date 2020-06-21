@@ -1,5 +1,4 @@
 ﻿using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -41,7 +40,6 @@ namespace Challenger.Wpf.Views
 
             if (e.NewValue is ConverterBenchmarkViewModel newViewModel)
                 newViewModel.ConsoleOutput.CollectionChanged += OnConsoleOutputChanged;
-
         }
 
         private void OnConsoleOutputChanged(object sender, NotifyCollectionChangedEventArgs e)
