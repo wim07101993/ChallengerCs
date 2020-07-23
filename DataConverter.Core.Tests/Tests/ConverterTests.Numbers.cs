@@ -59,7 +59,7 @@ namespace DataConverter.Core.Tests.Tests
         public void GetUShortBytesTest(string caseKey)
         {
             var (test, solution) = parseUShortTestCases.Get<ushort, byte[]>(caseKey);
-            _ = Converter.GetBytes(test)
+            _ = Converter.GetUShortBytes(test)
                 .Should()
                 .BeEquivalentTo(solution);
         }
@@ -115,7 +115,7 @@ namespace DataConverter.Core.Tests.Tests
         public void GetUIntBytesTest(string caseKey)
         {
             var (test, solution) = parseUIntTestCases.Get<uint, byte[]>(caseKey);
-            _ = Converter.GetBytes(test)
+            _ = Converter.GetUIntBytes(test)
                 .Should()
                 .BeEquivalentTo(solution);
         }
@@ -171,7 +171,7 @@ namespace DataConverter.Core.Tests.Tests
         public void GetULongBytesTest(string caseKey)
         {
             var (test, solution) = parseULongTestCases.Get<ulong, byte[]>(caseKey);
-            _ = Converter.GetBytes(test)
+            _ = Converter.GetULongBytes(test)
                 .Should()
                 .BeEquivalentTo(solution);
         }
@@ -227,7 +227,7 @@ namespace DataConverter.Core.Tests.Tests
         public void GetShortBytesTest(string caseKey)
         {
             var (test, solution) = parseShortTestCases.Get<short, byte[]>(caseKey);
-            _ = Converter.GetBytes(test)
+            _ = Converter.GetShortBytes(test)
                 .Should()
                 .BeEquivalentTo(solution);
         }
@@ -283,7 +283,7 @@ namespace DataConverter.Core.Tests.Tests
         public void GetIntBytesTest(string caseKey)
         {
             var (test, solution) = parseIntTestCases.Get<int, byte[]>(caseKey);
-            _ = Converter.GetBytes(test)
+            _ = Converter.GetIntBytes(test)
                 .Should()
                 .BeEquivalentTo(solution);
         }
@@ -339,7 +339,7 @@ namespace DataConverter.Core.Tests.Tests
         public void GetLongBytesTest(string caseKey)
         {
             var (test, solution) = parseLongTestCases.Get<long, byte[]>(caseKey);
-            _ = Converter.GetBytes(test)
+            _ = Converter.GetLongBytes(test)
                 .Should()
                 .BeEquivalentTo(solution);
         }
@@ -395,7 +395,7 @@ namespace DataConverter.Core.Tests.Tests
         public void GetFloatBytesTest(string caseKey)
         {
             var (test, solution) = parseFloatTestCases.Get<float, byte[]>(caseKey);
-            _ = Converter.GetBytes(test)
+            _ = Converter.GetFloatBytes(test)
                 .Should()
                 .BeEquivalentTo(solution);
         }
@@ -451,7 +451,7 @@ namespace DataConverter.Core.Tests.Tests
         public void GetDoubleBytesTest(string caseKey)
         {
             var (test, solution) = parseDoubleTestCases.Get<double, byte[]>(caseKey);
-            _ = Converter.GetBytes(test)
+            _ = Converter.GetDoubleBytes(test)
                 .Should()
                 .BeEquivalentTo(solution);
         }
@@ -488,7 +488,7 @@ namespace DataConverter.Core.Tests.Tests
         public void GetDecimalBytesTest(string caseKey)
         {
             var (test, solution) = parseDecimalTestCases.Get<decimal, byte[]>(caseKey);
-            _ = Converter.GetBytes(test)
+            _ = Converter.GetDecimalBytes(test)
                 .Should()
                 .BeEquivalentTo(solution);
         }

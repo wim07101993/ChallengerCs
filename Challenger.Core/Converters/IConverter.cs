@@ -1,4 +1,6 @@
-﻿namespace Challenger.Core.Converters
+﻿using System.ComponentModel;
+
+namespace Challenger.Core.Converters
 {
     public interface IConverter
     {
@@ -8,6 +10,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>The string representing the bytes in a binary format (01001111-01001011-...).</returns>
+        [DisplayName("Bytes -> Binary string")]
         string GetBinaryString(byte[] bytes);
 
         /// <summary>
@@ -16,6 +19,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>The string representing the bytes in a octal format (117-113-...).</returns>
+        [DisplayName("Bytes -> Octal string")]
         string GetOctalString(byte[] bytes);
 
         /// <summary>
@@ -24,6 +28,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>The string representing the bytes in a decimal format (79-75-...).</returns>
+        [DisplayName("Bytes -> Decimal string")]
         string GetDecimalString(byte[] bytes);
 
         /// <summary>
@@ -32,6 +37,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>The string representing the bytes in a hexadecimal format (4F-4B-...).</returns>
+        [DisplayName("Bytes -> Hex string")]
         string GetHexString(byte[] bytes);
 
         /// <summary>
@@ -39,6 +45,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert.</param>
         /// <returns>The ASCII string representing the bytes.</returns>
+        [DisplayName("Bytes -> ASCII string")]
         string GetAsciiString(byte[] bytes);
 
         /// <summary>
@@ -46,6 +53,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="ushort" /> that the bytes represent.</returns>
+        [DisplayName("Bytes -> UInt16")]
         ushort GetUShort(byte[] bytes);
 
         /// <summary>
@@ -53,6 +61,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="uint" /> that the bytes represent.</returns>
+        [DisplayName("Bytes -> UInt32")]
         uint GetUInt(byte[] bytes);
 
         /// <summary>
@@ -60,6 +69,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="ulong" /> that the bytes represent.</returns>
+        [DisplayName("Bytes -> UInt64")]
         ulong GetULong(byte[] bytes);
 
         /// <summary>
@@ -67,6 +77,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="short" /> that the bytes represent.</returns>
+        [DisplayName("Bytes -> Int16")]
         short GetShort(byte[] bytes);
 
         /// <summary>
@@ -74,6 +85,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="int" /> that the bytes represent.</returns>
+        [DisplayName("Bytes -> Int32")]
         int GetInt(byte[] bytes);
 
         /// <summary>
@@ -81,6 +93,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="long" /> that the bytes represent.</returns>
+        [DisplayName("Bytes -> Int64")]
         long GetLong(byte[] bytes);
 
         /// <summary>
@@ -88,6 +101,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="float" /> that the bytes represent.</returns>
+        [DisplayName("Bytes -> Float32")]
         float GetFloat(byte[] bytes);
 
         /// <summary>
@@ -95,6 +109,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="double" /> that the bytes represent.</returns>
+        [DisplayName("Bytes -> Float64")]
         double GetDouble(byte[] bytes);
 
         /// <summary>
@@ -102,6 +117,7 @@
         /// </summary>
         /// <param name="bytes">The bytes to convert</param>
         /// <returns>The <see cref="decimal" /> that the bytes represent.</returns>
+        [DisplayName("Bytes -> Float128")]
         decimal GetDecimal(byte[] bytes);
 
         /// <summary>
@@ -109,63 +125,72 @@
         /// </summary>
         /// <param name="s">The <see cref="ushort" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="ushort" /></returns>
-        byte[] GetBytes(ushort s);
+        [DisplayName("UInt16 -> Bytes")]
+        byte[] GetUShortBytes(ushort s);
 
         /// <summary>
         ///     Converts a <see cref="uint" /> to its representing <see cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="uint" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="uint" /></returns>
-        byte[] GetBytes(uint i);
+        [DisplayName("UInt32 -> Bytes")]
+        byte[] GetUIntBytes(uint i);
 
         /// <summary>
         ///     Converts a <see cref="ulong" /> to its representing <see cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="ulong" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="ulong" /></returns>
-        byte[] GetBytes(ulong l);
+        [DisplayName("UInt64 -> Bytes")]
+        byte[] GetULongBytes(ulong l);
 
         /// <summary>
         ///     Converts a <see cref="short" /> to its representing <see cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="short" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="short" /></returns>
-        byte[] GetBytes(short s);
+        [DisplayName("Int16 -> Bytes")]
+        byte[] GetShortBytes(short s);
 
         /// <summary>
         ///     Converts a <see cref="int" /> to its representing <see cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="int" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="int" /></returns>
-        byte[] GetBytes(int i);
+        [DisplayName("Int32 -> Bytes")]
+        byte[] GetIntBytes(int i);
 
         /// <summary>
         ///     Converts a <see cref="long" /> to its representing <see cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="long" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="long" /></returns>
-        byte[] GetBytes(long l);
+        [DisplayName("Int64 -> Bytes")]
+        byte[] GetLongBytes(long l);
 
         /// <summary>
         ///     Converts a <see cref="float" /> to its representing <see cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="float" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="float" /></returns>
-        byte[] GetBytes(float f);
+        [DisplayName("Float32 -> Bytes")]
+        byte[] GetFloatBytes(float f);
 
         /// <summary>
         ///     Converts a <see cref="double" /> to its representing <see cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="double" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="double" /></returns>
-        byte[] GetBytes(double d);
+        [DisplayName("Float64 -> Bytes")]
+        byte[] GetDoubleBytes(double d);
 
         /// <summary>
         ///     Converts a <see cref="decimal" /> to its representing <see cref="byte[]" />.
         /// </summary>
         /// <param name="s">The <see cref="decimal" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="decimal" /></returns>
-        byte[] GetBytes(decimal d);
+        [DisplayName("Float128 -> Bytes")]
+        byte[] GetDecimalBytes(decimal d);
 
         /// <summary>
         ///     Converts a binary <see cref="string" /> (1001111-1001011-...) to its representing
@@ -173,6 +198,7 @@
         /// </summary>
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
+        [DisplayName("Binary string -> Bytes")]
         byte[] ParseBinaryString(string s);
 
         /// <summary>
@@ -181,6 +207,7 @@
         /// </summary>
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
+        [DisplayName("Octal string -> Bytes")]
         byte[] ParseOctalString(string s);
 
         /// <summary>
@@ -189,6 +216,7 @@
         /// </summary>
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
+        [DisplayName("Decimal string -> Bytes")]
         byte[] ParseDecimalString(string s);
 
         /// <summary>
@@ -197,6 +225,7 @@
         /// </summary>
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
+        [DisplayName("Hex string -> Bytes")]
         byte[] ParseHexString(string s);
 
         /// <summary>
@@ -205,6 +234,7 @@
         /// </summary>
         /// <param name="s">The <see cref="string" /> to convert.</param>
         /// <returns>The bytes representing the <see cref="string" /></returns>
+        [DisplayName("ASCII string -> Bytes")]
         byte[] GetAsciiBytes(string s);
     }
 }

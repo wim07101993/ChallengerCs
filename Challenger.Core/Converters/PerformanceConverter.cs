@@ -8,7 +8,22 @@ namespace Challenger.Core.Converters
     {
         #region array string
 
-        public string GetBinaryString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 2));
+        public string GetBinaryString(byte[] bytes)
+        {
+            var builder = new StringBuilder((bytes.Length * 9) - 1);
+
+            for (var j = 7; j >= 0; j--)
+                _ = builder.Append((bytes[0] & (1 << 0)) == 0 ? '0' : '1');
+
+            for (var i = bytes.Length - 1; i >= 0; i--)
+            {
+                _ = builder.Append('-');
+                for (var j = 7; j >= 0; j--)
+                    _ = builder.Append((bytes[i] & (1 << j)) == 0 ? '0' : '1');
+            }
+
+            return builder.ToString();
+        }
 
         public string GetOctalString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 8));
 
@@ -26,7 +41,58 @@ namespace Challenger.Core.Converters
               .Trim();
         }
 
-        public byte[] ParseBinaryString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 2));
+        public byte[] ParseBinaryString(string s)
+        {
+            var bytes = new byte[s.Length >> 1];
+            var byteCount = 0;
+            var byteStarted = false;
+            var bitIndex = 0;
+
+            for (var i = s.Length - 1; i >= 0; i--)
+            {
+                switch (s[i])
+                {
+                    case '0':
+                        bitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '1':
+                        bytes[byteCount] |= (byte)(1 << bitIndex);
+                        bitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    default:
+                        bitIndex = 0;
+                        if (byteStarted)
+                        {
+                            byteStarted = false;
+                            byteCount++;
+                        }
+                        break;
+                }
+
+                if (bitIndex == 8)
+                {
+                    byteStarted = false;
+                    byteCount++;
+                    bitIndex = 0;
+                }
+            }
+
+            if (byteCount == 0)
+                return new byte[1];
+
+            if (byteStarted)
+                byteCount++;
+
+            var result = new byte[byteCount];
+            for (var i = 0; i < byteCount; i++)
+                result[i] = bytes[i];
+
+            return result;
+        }
 
         public byte[] ParseOctalString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 8));
 
@@ -92,23 +158,23 @@ namespace Challenger.Core.Converters
 
         #region from number
 
-        public byte[] GetBytes(ushort s) => TrimArray(BitConverter.GetBytes(s));
+        public byte[] GetUShortBytes(ushort s) => TrimArray(BitConverter.GetBytes(s));
 
-        public byte[] GetBytes(short s) => TrimArray(BitConverter.GetBytes(s));
+        public byte[] GetShortBytes(short s) => TrimArray(BitConverter.GetBytes(s));
 
-        public byte[] GetBytes(uint i) => TrimArray(BitConverter.GetBytes(i));
+        public byte[] GetUIntBytes(uint i) => TrimArray(BitConverter.GetBytes(i));
 
-        public byte[] GetBytes(int i) => TrimArray(BitConverter.GetBytes(i));
+        public byte[] GetIntBytes(int i) => TrimArray(BitConverter.GetBytes(i));
 
-        public byte[] GetBytes(ulong l) => TrimArray(BitConverter.GetBytes(l));
+        public byte[] GetULongBytes(ulong l) => TrimArray(BitConverter.GetBytes(l));
 
-        public byte[] GetBytes(long l) => TrimArray(BitConverter.GetBytes(l));
+        public byte[] GetLongBytes(long l) => TrimArray(BitConverter.GetBytes(l));
 
-        public byte[] GetBytes(float f) => TrimArray(BitConverter.GetBytes(f));
+        public byte[] GetFloatBytes(float f) => TrimArray(BitConverter.GetBytes(f));
 
-        public byte[] GetBytes(double d) => TrimArray(BitConverter.GetBytes(d));
+        public byte[] GetDoubleBytes(double d) => TrimArray(BitConverter.GetBytes(d));
 
-        public unsafe byte[] GetBytes(decimal d)
+        public unsafe byte[] GetDecimalBytes(decimal d)
         {
             var bytes = new byte[16];
             fixed (byte* b = bytes)
