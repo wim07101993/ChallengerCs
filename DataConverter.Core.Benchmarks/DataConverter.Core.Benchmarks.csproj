@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>netcoreapp3.1;net48;</TargetFrameworks>
     <LangVersion>8</LangVersion>
+    <Configurations>Debug;Release;BenchmarkDebug</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -12,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+    <PackageReference Include="WSharp" Version="1.0.2.1" />
   </ItemGroup>
 
   <ItemGroup>

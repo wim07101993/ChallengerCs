@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Challenger.Core.Converters
 {
@@ -39,23 +37,23 @@ namespace Challenger.Core.Converters
             if (type == typeof(string))
                 return converter.GetAsciiBytes((string)(object)value);
             if (type == typeof(ushort))
-                return converter.GetBytes((ushort)(object)value);
+                return converter.GetUShortBytes((ushort)(object)value);
             if (type == typeof(short))
-                return converter.GetBytes((short)(object)value);
+                return converter.GetShortBytes((short)(object)value);
             if (type == typeof(uint))
-                return converter.GetBytes((uint)(object)value);
+                return converter.GetUIntBytes((uint)(object)value);
             if (type == typeof(int))
-                return converter.GetBytes((int)(object)value);
+                return converter.GetIntBytes((int)(object)value);
             if (type == typeof(ulong))
-                return converter.GetBytes((ulong)(object)value);
+                return converter.GetULongBytes((ulong)(object)value);
             if (type == typeof(long))
-                return converter.GetBytes((long)(object)value);
+                return converter.GetLongBytes((long)(object)value);
             if (type == typeof(float))
-                return converter.GetBytes((float)(object)value);
+                return converter.GetFloatBytes((float)(object)value);
             if (type == typeof(double))
-                return converter.GetBytes((double)(object)value);
+                return converter.GetDoubleBytes((double)(object)value);
             if (type == typeof(decimal))
-                return converter.GetBytes((decimal)(object)value);
+                return converter.GetDecimalBytes((decimal)(object)value);
 
             throw new ArgumentException(nameof(T), $"Cannot convert from type {typeof(T)}");
         }

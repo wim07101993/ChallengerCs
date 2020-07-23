@@ -24,7 +24,8 @@
         <Style BasedOn="{StaticResource MaterialDesignCardGroupBox}" TargetType="{x:Type GroupBox}" />
 
         <x:Array x:Key="Pages" Type="{x:Type system:Object}">
-            <views:ConverterView Tag="Converter" />
+            <views:ConverterChallenge Tag="Converter Challenge" />
+            <views:ConverterBenchmark Tag="Converter Benchmark" />
             <views:ColorTool Tag="Color tool" />
         </x:Array>
     </Window.Resources>
