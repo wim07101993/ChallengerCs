@@ -10,12 +10,16 @@ namespace Challenger.Core.Converters
 
         public string GetBinaryString(byte[] bytes)
         {
+            // bytes.Length * 9 = 8 1/0's + the '-' between bytes
+            // -1 because the first byte is not preceded by a '-'
             var builder = new StringBuilder((bytes.Length * 9) - 1);
 
-            for (var j = 7; j >= 0; j--)
-                _ = builder.Append((bytes[0] & (1 << 0)) == 0 ? '0' : '1');
+            var l = bytes.Length - 1;
 
-            for (var i = bytes.Length - 1; i >= 0; i--)
+            for (var j = 7; j >= 0; j--)
+                _ = builder.Append((bytes[l] & (1 << j)) == 0 ? '0' : '1');
+
+            for (var i = l - 1; i >= 0; i--)
             {
                 _ = builder.Append('-');
                 for (var j = 7; j >= 0; j--)
@@ -25,11 +29,73 @@ namespace Challenger.Core.Converters
             return builder.ToString();
         }
 
-        public string GetOctalString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 8));
+        public string GetOctalString(byte[] bytes)
+        {
+            // bytes.Length * 4 = 3 digits + the '-' between bytes
+            // -1 because the first byte is not preceded by a '-'
+            var builder = new StringBuilder((bytes.Length * 4) - 1);
 
-        public string GetDecimalString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 10));
+            var l = bytes.Length - 1;
 
-        public string GetHexString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 16));
+            _ = builder
+                .Append(((0b1100_0000) & bytes[l]) >> 6)
+                .Append(((0b0011_1000) & bytes[l]) >> 3)
+                .Append((0b0000_0111) & bytes[l]);
+
+            for (var i = l - 1; i >= 0; i--)
+            {
+                _ = builder
+                    .Append('-')
+                    .Append(((0b1100_0000) & bytes[i]) >> 6)
+                    .Append(((0b0011_1000) & bytes[i]) >> 3)
+                    .Append((0b0000_0111) & bytes[i]);
+            }
+
+            return builder.ToString();
+        }
+
+        public string GetDecimalString(byte[] bytes)
+        {
+            // bytes.Length * 4 = 3 digits + the '-' between bytes
+            // -1 because the first byte is not preceded by a '-'
+            var builder = new StringBuilder((bytes.Length * 4) - 1);
+
+            var l = bytes.Length - 1;
+
+            _ = builder.Append(bytes[l]);
+
+            for (var i = l - 1; i >= 0; i--)
+            {
+                _ = builder
+                    .Append('-')
+                    .Append(bytes[i]);
+            }
+
+            return builder.ToString();
+        }
+
+        public string GetHexString(byte[] bytes)
+        {
+            // bytes.Length * 3 = 2 digits + the '-' between bytes
+            // -1 because the first byte is not preceded by a '-'
+            var builder = new StringBuilder((bytes.Length * 3) - 1);
+
+            var l = bytes.Length - 1;
+
+            _ = builder
+                .Append(((0b1111_0000) & bytes[l]) >> 4)
+                .Append((0b0000_1111) & bytes[l]);
+
+            for (var i = l - 1; i >= 0; i--)
+            {
+                _ = builder
+                    .Append('-')
+                    .Append(((0b1111_0000) & bytes[i]) >> 4)
+                    .Append((0b0000_1111) & bytes[i]);
+            }
+
+            return builder.ToString();
+        }
 
         private string GetArrayString(byte[] bytes, Func<byte, string> toString)
         {
