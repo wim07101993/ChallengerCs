@@ -83,18 +83,29 @@ namespace Challenger.Core.Converters
             var l = bytes.Length - 1;
 
             _ = builder
-                .Append(((0b1111_0000) & bytes[l]) >> 4)
-                .Append((0b0000_1111) & bytes[l]);
+                .Append(NibbleToHexString(((0b1111_0000) & bytes[l]) >> 4))
+                .Append(NibbleToHexString((0b0000_1111) & bytes[l]));
 
             for (var i = l - 1; i >= 0; i--)
             {
                 _ = builder
                     .Append('-')
-                    .Append(((0b1111_0000) & bytes[i]) >> 4)
-                    .Append((0b0000_1111) & bytes[i]);
+                    .Append(NibbleToHexString(((0b1111_0000) & bytes[i]) >> 4))
+                    .Append(NibbleToHexString((0b0000_1111) & bytes[i]));
             }
 
             return builder.ToString();
+
+            static string NibbleToHexString(int nible) => nible switch
+            {
+                10 => "A",
+                11 => "B",
+                12 => "C",
+                13 => "D",
+                14 => "E",
+                15 => "F",
+                _ => nible.ToString(),
+            };
         }
 
         private string GetArrayString(byte[] bytes, Func<byte, string> toString)
