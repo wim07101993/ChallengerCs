@@ -108,16 +108,6 @@ namespace Challenger.Core.Converters
             };
         }
 
-        private string GetArrayString(byte[] bytes, Func<byte, string> toString)
-        {
-            return bytes
-              .Reverse() // little endian
-              .Select(toString)
-              .Aggregate(new StringBuilder(), (b, x) => b.Append($"{x} "))
-              .ToString()
-              .Trim();
-        }
-
         public byte[] ParseBinaryString(string s)
         {
             var bytes = new byte[s.Length >> 1];
