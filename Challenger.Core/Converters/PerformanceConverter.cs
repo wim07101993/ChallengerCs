@@ -161,22 +161,350 @@ namespace Challenger.Core.Converters
             return result;
         }
 
-        public byte[] ParseOctalString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 8));
-
-        public byte[] ParseDecimalString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 10));
-
-        public byte[] ParseHexString(string s) => ParseArrayString(s, x => Convert.ToByte(x, 16));
-
-        private byte[] ParseArrayString(string s, Func<string, byte> fromString)
+        public byte[] ParseOctalString(string s)
         {
-            var split = s.Split(new[] { ' ', ':', '-' }, StringSplitOptions.RemoveEmptyEntries);
+            var bytes = new byte[s.Length >> 1];
+            var byteCount = 0;
+            var byteStarted = false;
+            var digitIndex = 0;
 
-            var bytes = new byte[split.Length];
+            for (var i = s.Length - 1; i >= 0; i--)
+            {
+                switch (s[i])
+                {
+                    case '0':
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
 
-            for (var i = 0; i < split.Length; ++i)
-                bytes[i] = fromString(split[split.Length - 1 - i]);
+                    case '1':
+                        bytes[byteCount] += (byte)FastPow(8, digitIndex);
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
 
-            return bytes;
+                    case '2':
+                        bytes[byteCount] += (byte)(2 * FastPow(8, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '3':
+                        bytes[byteCount] += (byte)(3 * FastPow(8, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '4':
+                        bytes[byteCount] += (byte)(4 * FastPow(8, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '5':
+                        bytes[byteCount] += (byte)(5 * FastPow(8, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '6':
+                        bytes[byteCount] += (byte)(6 * FastPow(8, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '7':
+                        bytes[byteCount] += (byte)(7 * FastPow(8, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    default:
+                        digitIndex = 0;
+                        if (byteStarted)
+                        {
+                            byteStarted = false;
+                            byteCount++;
+                        }
+                        break;
+                }
+
+                if (digitIndex == 3)
+                {
+                    byteStarted = false;
+                    byteCount++;
+                    digitIndex = 0;
+                }
+            }
+
+            if (byteCount == 0)
+                return new byte[1];
+
+            if (byteStarted)
+                byteCount++;
+
+            var result = new byte[byteCount];
+            for (var i = 0; i < byteCount; i++)
+                result[i] = bytes[i];
+
+            return result;
+        }
+
+        public byte[] ParseDecimalString(string s)
+        {
+            var bytes = new byte[s.Length >> 1];
+            var byteCount = 0;
+            var byteStarted = false;
+            var digitIndex = 0;
+
+            for (var i = s.Length - 1; i >= 0; i--)
+            {
+                switch (s[i])
+                {
+                    case '0':
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '1':
+                        bytes[byteCount] += (byte)FastPow(10, digitIndex);
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '2':
+                        bytes[byteCount] += (byte)(2 * FastPow(10, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '3':
+                        bytes[byteCount] += (byte)(3 * FastPow(10, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '4':
+                        bytes[byteCount] += (byte)(4 * FastPow(10, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '5':
+                        bytes[byteCount] += (byte)(5 * FastPow(10, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '6':
+                        bytes[byteCount] += (byte)(6 * FastPow(10, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '7':
+                        bytes[byteCount] += (byte)(7 * FastPow(10, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '8':
+                        bytes[byteCount] += (byte)(8 * FastPow(10, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '9':
+                        bytes[byteCount] += (byte)(9 * FastPow(10, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    default:
+                        digitIndex = 0;
+                        if (byteStarted)
+                        {
+                            byteStarted = false;
+                            byteCount++;
+                        }
+                        break;
+                }
+
+                if (digitIndex == 3)
+                {
+                    byteStarted = false;
+                    byteCount++;
+                    digitIndex = 0;
+                }
+            }
+
+            if (byteCount == 0)
+                return new byte[1];
+
+            if (byteStarted)
+                byteCount++;
+
+            var result = new byte[byteCount];
+            for (var i = 0; i < byteCount; i++)
+                result[i] = bytes[i];
+
+            return result;
+        }
+
+        public byte[] ParseHexString(string s)
+        {
+            var bytes = new byte[s.Length >> 1];
+            var byteCount = 0;
+            var byteStarted = false;
+            var digitIndex = 0;
+
+            for (var i = s.Length - 1; i >= 0; i--)
+            {
+                switch (s[i])
+                {
+                    case '0':
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '1':
+                        bytes[byteCount] += (byte)FastPow(16, digitIndex);
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '2':
+                        bytes[byteCount] += (byte)(0x2 * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '3':
+                        bytes[byteCount] += (byte)(0x3 * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '4':
+                        bytes[byteCount] += (byte)(0x4 * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '5':
+                        bytes[byteCount] += (byte)(0x5 * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '6':
+                        bytes[byteCount] += (byte)(0x6 * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '7':
+                        bytes[byteCount] += (byte)(0x7 * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '8':
+                        bytes[byteCount] += (byte)(0x8 * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case '9':
+                        bytes[byteCount] += (byte)(0x9 * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case 'A':
+                    case 'a':
+                        bytes[byteCount] += (byte)(0xa * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case 'B':
+                    case 'b':
+                        bytes[byteCount] += (byte)(0xb * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case 'C':
+                    case 'c':
+                        bytes[byteCount] += (byte)(0xc * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case 'D':
+                    case 'd':
+                        bytes[byteCount] += (byte)(0xd * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case 'E':
+                    case 'e':
+                        bytes[byteCount] += (byte)(0xe * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    case 'F':
+                    case 'f':
+                        bytes[byteCount] += (byte)(0xf * FastPow(16, digitIndex));
+                        digitIndex++;
+                        byteStarted = true;
+                        break;
+
+                    default:
+                        digitIndex = 0;
+                        if (byteStarted)
+                        {
+                            byteStarted = false;
+                            byteCount++;
+                        }
+                        break;
+                }
+
+                if (digitIndex == 2)
+                {
+                    byteStarted = false;
+                    byteCount++;
+                    digitIndex = 0;
+                }
+            }
+
+            if (byteCount == 0)
+                return new byte[1];
+
+            if (byteStarted)
+                byteCount++;
+
+            var result = new byte[byteCount];
+            for (var i = 0; i < byteCount; i++)
+                result[i] = bytes[i];
+
+            return result;
+        }
+
+        private int FastPow(int x, int exp)
+        {
+            switch (exp)
+            {
+                case 0: return 1;
+
+                default:
+                    for (var i = 1; i < exp; i++)
+                        x *= x;
+                    return x;
+            }
         }
 
         #endregion array string
