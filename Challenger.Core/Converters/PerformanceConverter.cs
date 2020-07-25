@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Challenger.Core.Converters
@@ -519,55 +520,189 @@ namespace Challenger.Core.Converters
 
         #region to number
 
-        public ushort GetUShort(byte[] bytes) => BitConverter.ToUInt16(ResizeArray(bytes, 2), 0);
+        public unsafe ushort GetUShort(byte[] bytes)
+        {
+            if (bytes.Length < 2)
+            {
+                var ret = new byte[2];
+                Array.Copy(bytes, ret, Math.Min(bytes.Length, 2));
+                bytes = ret;
+            }
 
-        public short GetShort(byte[] bytes) => BitConverter.ToInt16(ResizeArray(bytes, 2), 0);
+            fixed (byte* pbyte = &bytes[0])
+                return *(ushort*)pbyte;
+        }
 
-        public uint GetUInt(byte[] bytes) => BitConverter.ToUInt32(ResizeArray(bytes, 4), 0);
+        public unsafe short GetShort(byte[] bytes)
+        {
+            if (bytes.Length < 2)
+            {
+                var ret = new byte[2];
+                Array.Copy(bytes, ret, Math.Min(bytes.Length, 2));
+            }
 
-        public int GetInt(byte[] bytes) => BitConverter.ToInt32(ResizeArray(bytes, 4), 0);
+            fixed (byte* pbyte = &bytes[0])
+                return *(short*)pbyte;
+        }
 
-        public ulong GetULong(byte[] bytes) => BitConverter.ToUInt64(ResizeArray(bytes, 8), 0);
+        public unsafe uint GetUInt(byte[] bytes)
+        {
+            if (bytes.Length < 4)
+            {
+                var ret = new byte[4];
+                Array.Copy(bytes, ret, Math.Min(bytes.Length, 4));
+                bytes = ret;
+            }
 
-        public long GetLong(byte[] bytes) => BitConverter.ToInt64(ResizeArray(bytes, 8), 0);
+            fixed (byte* pbyte = &bytes[0])
+                return *(uint*)pbyte;
+        }
 
-        public float GetFloat(byte[] bytes) => BitConverter.ToSingle(ResizeArray(bytes, 4), 0);
+        public unsafe int GetInt(byte[] bytes)
+        {
+            if (bytes.Length < 4)
+            {
+                var ret = new byte[4];
+                Array.Copy(bytes, ret, Math.Min(bytes.Length, 4));
+                bytes = ret;
+            }
 
-        public double GetDouble(byte[] bytes) => BitConverter.ToDouble(ResizeArray(bytes, 8), 0);
+            fixed (byte* pbyte = &bytes[0])
+                return *(int*)pbyte;
+        }
+
+        public unsafe ulong GetULong(byte[] bytes)
+        {
+            if (bytes.Length < 8)
+            {
+                var ret = new byte[8];
+                Array.Copy(bytes, ret, Math.Min(bytes.Length, 8));
+                bytes = ret;
+            }
+
+            fixed (byte* pbyte = &bytes[0])
+                return *(ulong*)pbyte;
+        }
+
+        public unsafe long GetLong(byte[] bytes)
+        {
+            if (bytes.Length < 8)
+            {
+                var ret = new byte[8];
+                Array.Copy(bytes, ret, Math.Min(bytes.Length, 8));
+                bytes = ret;
+            }
+
+            fixed (byte* pbyte = &bytes[0])
+                return *(long*)pbyte;
+        }
+
+        public unsafe float GetFloat(byte[] bytes)
+        {
+            if (bytes.Length < 4)
+            {
+                var ret = new byte[4];
+                Array.Copy(bytes, ret, Math.Min(bytes.Length, 4));
+                bytes = ret;
+            }
+
+            fixed (byte* pbyte = &bytes[0])
+                return *(float*)pbyte;
+        }
+
+        public unsafe double GetDouble(byte[] bytes)
+        {
+            if (bytes.Length < 8)
+            {
+                var ret = new byte[8];
+                Array.Copy(bytes, ret, Math.Min(bytes.Length, 8));
+                bytes = ret;
+            }
+
+            fixed (byte* pbyte = &bytes[0])
+                return *(double*)pbyte;
+        }
 
         public unsafe decimal GetDecimal(byte[] bytes)
         {
-            bytes = ResizeArray(bytes, 16);
+            if (bytes.Length < 16)
+            {
+                var ret = new byte[16];
+                Array.Copy(bytes, ret, Math.Min(bytes.Length, 16));
+                bytes = ret;
+            }
+
             fixed (byte* pbyte = &bytes[0])
                 return *(decimal*)pbyte;
-        }
-
-        public byte[] ResizeArray(byte[] bytes, int size)
-        {
-            var ret = new byte[size];
-            Array.Copy(bytes, ret, Math.Min(bytes.Length, size));
-            return ret;
         }
 
         #endregion to number
 
         #region from number
 
-        public byte[] GetUShortBytes(ushort s) => TrimArray(BitConverter.GetBytes(s));
+        public unsafe byte[] GetUShortBytes(ushort s)
+        {
+            var bytes = new byte[2];
+            fixed (byte* b = bytes)
+                *(ushort*)b = s;
+            return bytes;
+        }
 
-        public byte[] GetShortBytes(short s) => TrimArray(BitConverter.GetBytes(s));
+        public unsafe byte[] GetShortBytes(short s)
+        {
+            var bytes = new byte[2];
+            fixed (byte* b = bytes)
+                *(short*)b = s;
+            return bytes;
+        }
 
-        public byte[] GetUIntBytes(uint i) => TrimArray(BitConverter.GetBytes(i));
+        public unsafe byte[] GetUIntBytes(uint i)
+        {
+            var bytes = new byte[4];
+            fixed (byte* b = bytes)
+                *(uint*)b = i;
+            return bytes;
+        }
 
-        public byte[] GetIntBytes(int i) => TrimArray(BitConverter.GetBytes(i));
+        public unsafe byte[] GetIntBytes(int i)
+        {
+            var bytes = new byte[4];
+            fixed (byte* b = bytes)
+                *(int*)b = i;
+            return bytes;
+        }
 
-        public byte[] GetULongBytes(ulong l) => TrimArray(BitConverter.GetBytes(l));
+        public unsafe byte[] GetULongBytes(ulong l)
+        {
+            var bytes = new byte[8];
+            fixed (byte* b = bytes)
+                *(ulong*)b = l;
+            return bytes;
+        }
 
-        public byte[] GetLongBytes(long l) => TrimArray(BitConverter.GetBytes(l));
+        public unsafe byte[] GetLongBytes(long l)
+        {
+            var bytes = new byte[8];
+            fixed (byte* b = bytes)
+                *(long*)b = l;
+            return bytes;
+        }
 
-        public byte[] GetFloatBytes(float f) => TrimArray(BitConverter.GetBytes(f));
+        public unsafe byte[] GetFloatBytes(float f)
+        {
+            var bytes = new byte[4];
+            fixed (byte* b = bytes)
+                *(float*)b = f;
+            return bytes;
+        }
 
-        public byte[] GetDoubleBytes(double d) => TrimArray(BitConverter.GetBytes(d));
+        public unsafe byte[] GetDoubleBytes(double d)
+        {
+            var bytes = new byte[8];
+            fixed (byte* b = bytes)
+                *(double*)b = d;
+            return bytes;
+        }
 
         public unsafe byte[] GetDecimalBytes(decimal d)
         {
@@ -575,24 +710,7 @@ namespace Challenger.Core.Converters
             fixed (byte* b = bytes)
                 *(decimal*)b = d;
 
-            return TrimArray(bytes);
-        }
-
-        private static byte[] TrimArray(byte[] bytes)
-        {
-            var i = bytes.Length - 1;
-            if (bytes[i] != 0)
-                return bytes;
-
-            for (i--; i >= 0; i--)
-            {
-                if (bytes[i] != 0)
-                    break;
-            }
-
-            return i == -1 // all values are 0
-                ? new byte[] { 0 }
-                : bytes.Take(i + 1).ToArray();
+            return bytes;
         }
 
         #endregion from number
