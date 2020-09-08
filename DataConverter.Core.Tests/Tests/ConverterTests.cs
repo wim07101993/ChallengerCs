@@ -1,9 +1,6 @@
-﻿using System.Linq;
+﻿using System;
 
 using Challenger.Core.Converters;
-using DataConverter.Core.TestData;
-
-using NUnit.Framework;
 
 namespace DataConverter.Core.Tests.Tests
 {
@@ -13,21 +10,10 @@ namespace DataConverter.Core.Tests.Tests
 
         #region helping methods
 
-        private static byte[] TrimArray(byte[] bytes)
+        private static byte[] ResizeArray(byte[] bytes, int newSize)
         {
-            var i = bytes.Length - 1;
-            if (bytes[i] != 0)
-                return bytes;
-
-            for (i--; i >= 0; i--)
-            {
-                if (bytes[i] != 0)
-                    break;
-            }
-
-            return i == -1 // all values are 0
-                 ? new byte[] { 0 }
-                 : bytes.Take(i + 1).ToArray();
+            Array.Resize(ref bytes, newSize);
+            return bytes;
         }
 
         #endregion

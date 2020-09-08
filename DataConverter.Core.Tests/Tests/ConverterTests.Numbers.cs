@@ -16,7 +16,7 @@ namespace DataConverter.Core.Tests.Tests
             = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.UShort));
 
         private static readonly SimpleTestCaseCollection parseUShortTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.UShort, TrimArray(x.Bytes.Take(2).ToArray())));
+           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.UShort, ResizeArray(x.Bytes, 2)));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -72,7 +72,7 @@ namespace DataConverter.Core.Tests.Tests
             = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.UInt));
 
         private static readonly SimpleTestCaseCollection parseUIntTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.UInt, TrimArray(x.Bytes.Take(4).ToArray())));
+           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.UInt, ResizeArray(x.Bytes, 4)));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -128,7 +128,7 @@ namespace DataConverter.Core.Tests.Tests
             = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.ULong));
 
         private static readonly SimpleTestCaseCollection parseULongTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.ULong, TrimArray(x.Bytes.Take(8).ToArray())));
+           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.ULong, ResizeArray(x.Bytes, 8)));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -184,7 +184,7 @@ namespace DataConverter.Core.Tests.Tests
             = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.Short));
 
         private static readonly SimpleTestCaseCollection parseShortTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Short, TrimArray(x.Bytes.Take(2).ToArray())));
+           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Short, ResizeArray(x.Bytes, 2)));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -240,7 +240,7 @@ namespace DataConverter.Core.Tests.Tests
             = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.Int));
 
         private static readonly SimpleTestCaseCollection parseIntTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Int, TrimArray(x.Bytes.Take(4).ToArray())));
+           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Int, ResizeArray(x.Bytes, 4)));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -296,7 +296,7 @@ namespace DataConverter.Core.Tests.Tests
             = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.Long));
 
         private static readonly SimpleTestCaseCollection parseLongTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Long, TrimArray(x.Bytes.Take(8).ToArray())));
+           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Long, ResizeArray(x.Bytes, 8)));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -352,7 +352,7 @@ namespace DataConverter.Core.Tests.Tests
             = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.Float));
 
         private static readonly SimpleTestCaseCollection parseFloatTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Float, TrimArray(x.Bytes.Take(4).ToArray())));
+           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Float, ResizeArray(x.Bytes, 4)));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -408,7 +408,7 @@ namespace DataConverter.Core.Tests.Tests
             = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.Double));
 
         private static readonly SimpleTestCaseCollection parseDoubleTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Double, TrimArray(x.Bytes.Take(8).ToArray())));
+           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Double, ResizeArray(x.Bytes, 8)));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -464,7 +464,7 @@ namespace DataConverter.Core.Tests.Tests
             = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.Decimal));
 
         private static readonly SimpleTestCaseCollection parseDecimalTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Decimal, TrimArray(x.Bytes.Take(16).ToArray())));
+           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Decimal, ResizeArray(x.Bytes, 16)));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.UShort))]

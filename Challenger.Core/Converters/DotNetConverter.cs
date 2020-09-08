@@ -16,7 +16,7 @@ namespace Challenger.Core.Converters
         public string GetDecimalString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 10));
 
         public string GetHexString(byte[] bytes) => GetArrayString(bytes, x => Convert.ToString(x, 16));
-
+        
         private string GetArrayString(byte[] bytes, Func<byte, string> toString)
         {
             return bytes
