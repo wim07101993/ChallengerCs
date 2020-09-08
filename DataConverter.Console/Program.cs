@@ -6,6 +6,7 @@ using CommandLine;
 using Challenger.Core.Converters;
 
 using C = System.Console;
+using Challenger.Core.IL;
 
 namespace DataConverter.Console
 {
@@ -16,8 +17,11 @@ namespace DataConverter.Console
 
         private static void Main(string[] args)
         {
-            _ = Parser.Default.ParseArguments<Options>(args)
-                .WithParsed(Convert);
+            var helloWorld = new HelloWorld();
+
+            helloWorld.PrintHelloWorld();
+            //_ = Parser.Default.ParseArguments<Options>(args)
+            //    .WithParsed(Convert);
         }
 
         private static void Convert(Options options)
