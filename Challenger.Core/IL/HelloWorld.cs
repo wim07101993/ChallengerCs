@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading;
@@ -33,13 +31,7 @@ namespace Challenger.Core.IL
             ilGenertor.EmitCall(OpCodes.Call, writeLineMethod, null);
             ilGenertor.Emit(OpCodes.Ret);
 
-            // class HelloWorldPrinter 
-            // {
-            //     public void Print()
-            //     {
-            //         Console.WriteLine("Hello World");
-            //     }
-            // }
+            // class HelloWorldPrinter { public void Print() { Console.WriteLine("Hello World"); } }
 
             var type = typeBuilder.CreateTypeInfo();
             var inst = Activator.CreateInstance(type);
