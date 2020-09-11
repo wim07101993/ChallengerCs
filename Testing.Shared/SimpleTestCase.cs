@@ -1,6 +1,6 @@
-﻿namespace DataConverter.Core.Tests
+﻿namespace Testing.Shared
 {
-    internal sealed class SimpleTestCase
+    public sealed class SimpleTestCase
     {
         public SimpleTestCase()
         {

@@ -2,23 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using DataConverter.Core.TestData;
-
-namespace DataConverter.Core.Tests
+namespace Testing.Shared
 {
-    internal sealed class SimpleTestCaseCollection : Dictionary<string, SimpleTestCase>
+    public sealed class SimpleTestCaseCollection<TMockData, TExample> : Dictionary<string, SimpleTestCase>
     {
         public SimpleTestCaseCollection(Dictionary<string, SimpleTestCase> seed)
             : base(seed)
         {
         }
 
-        public SimpleTestCaseCollection(MockData testData, Func<Example, SimpleTestCase> testCaseSelector)
+        public SimpleTestCaseCollection(TMockData testData, Func<TExample, SimpleTestCase> testCaseSelector)
             : base(testData
                   .GetType()
                   .GetProperties()
-                  .Where(x => x.PropertyType == typeof(Example))
-                  .ToDictionary(x => x.Name, x => testCaseSelector((Example)x.GetValue(testData))))
+                  .Where(x => x.PropertyType == typeof(TExample))
+                  .ToDictionary(x => x.Name, x => testCaseSelector((TExample)x.GetValue(testData))))
         {
         }
 

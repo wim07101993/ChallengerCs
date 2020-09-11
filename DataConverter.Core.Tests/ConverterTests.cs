@@ -5,7 +5,7 @@ using DataConverter.Core.TestData;
 
 using NUnit.Framework;
 
-namespace DataConverter.Core.Tests.Tests
+namespace DataConverter.Core.Tests
 {
     public abstract partial class ConverterTests
     {

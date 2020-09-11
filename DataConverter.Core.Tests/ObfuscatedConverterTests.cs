@@ -1,6 +1,6 @@
 ﻿using Challenger.Core.Converters;
 
-namespace DataConverter.Core.Tests.Tests
+namespace DataConverter.Core.Tests
 {
     public class ObfuscatedConverterTests : ConverterTests
     {
