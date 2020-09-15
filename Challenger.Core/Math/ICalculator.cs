@@ -11,7 +11,7 @@ namespace Challenger.Core.Math
 
         /// <summary>Generates the fibonacci numbers. (An infinite series)</summary>
         /// <returns>An infinite series of fibbonacci numbers.</returns>
-        IEnumerable<int> Fibonacci();
+        IEnumerable<double> Fibonacci();
 
         /// <summary>Calculates the sin of an angle.</summary>
         /// <param name="angle">The angle in degrees to calculate the sin of.</param>
@@ -41,13 +41,13 @@ namespace Challenger.Core.Math
         /// <summary>Calculates the factorial of a number</summary>
         /// <param name="i">The input number</param>
         /// <returns>The factorial of the input number.</returns>
-        long Factorial(int i);
+        ulong Factorial(uint i);
 
         /// <summary>Calculates the greatest common denominator.</summary>
         /// <param name="num1">The first number.</param>
         /// <param name="num2">The second number</param>
         /// <returns>The result</returns>
-        int GreatestCommonDenominator(int num1, int num2);
+        int GreatestCommonFactor(int num1, int num2);
 
         /// <summary>Calculates the lowest commom multiple.</summary>
         /// <param name="num1">The first number.</param>

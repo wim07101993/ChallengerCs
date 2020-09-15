@@ -15,6 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Challenger.Core\Challenger.Core.csproj" />
+    <ProjectReference Include="..\Math.Core.TestData\Math.Core.TestData.csproj" />
+    <ProjectReference Include="..\Testing.Shared\Testing.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Testing.Shared
 {
-    public sealed class SimpleTestCaseCollection<TMockData, TExample> : Dictionary<string, SimpleTestCase>
+    public sealed class SimpleTestCaseCollection<TMockData, TExample> : TestCaseCollection<TMockData, TExample, SimpleTestCase>
     {
         public SimpleTestCaseCollection(Dictionary<string, SimpleTestCase> seed)
             : base(seed)
@@ -12,11 +11,7 @@ namespace Testing.Shared
         }
 
         public SimpleTestCaseCollection(TMockData testData, Func<TExample, SimpleTestCase> testCaseSelector)
-            : base(testData
-                  .GetType()
-                  .GetProperties()
-                  .Where(x => x.PropertyType == typeof(TExample))
-                  .ToDictionary(x => x.Name, x => testCaseSelector((TExample)x.GetValue(testData))))
+            : base(testData, testCaseSelector)
         {
         }
 
