@@ -1,5 +1,4 @@
-﻿using Challenger.Core.Converters;
-using Challenger.Core.Math;
+﻿using Challenger.Core.Math;
 
 namespace Math.Core.Tests
 {

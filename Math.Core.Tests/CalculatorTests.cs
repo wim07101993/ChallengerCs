@@ -16,11 +16,6 @@ namespace Math.Core.Tests
     {
         protected abstract ICalculator Calculator { get; }
 
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         #region NextPrime
 
         private static readonly SimpleTestCaseCollection<CalculatorMockData, PrimeExample> nextPrimeTestCases

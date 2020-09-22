@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Challenger.Core.Math
+﻿namespace Challenger.Core.Math
 {
-    class DotNetConstantGenerator
+    public class DotNetConstantGenerator : IConstantGenerator
     {
+        public decimal E(int decimals) => throw new System.NotImplementedException();
+        public decimal GoldenRatio(int decimals) => throw new System.NotImplementedException();
+        public decimal Pi(int decimals) => throw new System.NotImplementedException();
+        public decimal Root2(int decimals) => throw new System.NotImplementedException();
     }
 }
