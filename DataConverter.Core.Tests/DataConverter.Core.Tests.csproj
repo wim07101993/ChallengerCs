@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataConverter.Core.TestData\DataConverter.Core.TestData.csproj" />
     <ProjectReference Include="..\Challenger.Core\Challenger.Core.csproj" />
+    <ProjectReference Include="..\Testing.Shared\Testing.Shared.csproj" />
   </ItemGroup>
 
 </Project>

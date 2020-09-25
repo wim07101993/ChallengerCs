@@ -1,11 +1,8 @@
 ﻿using System.Linq;
 
 using Challenger.Core.Converters;
-using DataConverter.Core.TestData;
 
-using NUnit.Framework;
-
-namespace DataConverter.Core.Tests.Tests
+namespace DataConverter.Core.Tests
 {
     public abstract partial class ConverterTests
     {
@@ -30,6 +27,6 @@ namespace DataConverter.Core.Tests.Tests
                  : bytes.Take(i + 1).ToArray();
         }
 
-        #endregion
+        #endregion helping methods
     }
 }

@@ -4,17 +4,19 @@ using FluentAssertions;
 
 using NUnit.Framework;
 
-namespace DataConverter.Core.Tests.Tests
+using Testing.Shared;
+
+namespace DataConverter.Core.Tests
 {
     public partial class ConverterTests
     {
         #region Binary string
 
-        private static readonly SimpleTestCaseCollection getBinaryStringTestCases
-            = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, @$"({x.BinaryString.Replace(" ", @"[-\. _]")})|({x.ShortBinaryString.Replace(" ", @"[-\. _]")})"));
+        private static readonly SimpleTestCaseCollection<MockData, Example> getBinaryStringTestCases
+            = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.Bytes, @$"({x.BinaryString.Replace(" ", @"[-\. _]")})|({x.ShortBinaryString.Replace(" ", @"[-\. _]")})"));
 
-        private static readonly SimpleTestCaseCollection parseBinaryStringTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.ShortBinaryString, x.Bytes));
+        private static readonly SimpleTestCaseCollection<MockData, Example> parseBinaryStringTestCases
+           = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.ShortBinaryString, x.Bytes));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -66,11 +68,11 @@ namespace DataConverter.Core.Tests.Tests
 
         #region Octal string
 
-        private static readonly SimpleTestCaseCollection getOctalStringTestCases
-            = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, $"^(?i)({x.ShortOctalString.Replace(" ", @"[-\. _]")})|({x.OctalString.Replace(" ", @"[-\. _]")})$"));
+        private static readonly SimpleTestCaseCollection<MockData, Example> getOctalStringTestCases
+            = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.Bytes, $"^(?i)({x.ShortOctalString.Replace(" ", @"[-\. _]")})|({x.OctalString.Replace(" ", @"[-\. _]")})$"));
 
-        private static readonly SimpleTestCaseCollection parseOctalStringTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.ShortOctalString, x.Bytes));
+        private static readonly SimpleTestCaseCollection<MockData, Example> parseOctalStringTestCases
+           = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.ShortOctalString, x.Bytes));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -122,11 +124,11 @@ namespace DataConverter.Core.Tests.Tests
 
         #region Decimal string
 
-        private static readonly SimpleTestCaseCollection getDecimalStringTestCases
-            = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, $"^(?i)({x.ShortDecimalString.Replace(" ", @"[-\. _]")})|({x.DecimalString.Replace(" ", @"[-\. _]")})$"));
+        private static readonly SimpleTestCaseCollection<MockData, Example> getDecimalStringTestCases
+            = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.Bytes, $"^(?i)({x.ShortDecimalString.Replace(" ", @"[-\. _]")})|({x.DecimalString.Replace(" ", @"[-\. _]")})$"));
 
-        private static readonly SimpleTestCaseCollection parseDecimalStringTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.ShortDecimalString, x.Bytes));
+        private static readonly SimpleTestCaseCollection<MockData, Example> parseDecimalStringTestCases
+           = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.ShortDecimalString, x.Bytes));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -178,11 +180,11 @@ namespace DataConverter.Core.Tests.Tests
 
         #region Hex string
 
-        private static readonly SimpleTestCaseCollection getHexStringTestCases
-            = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, $"^(?i)({x.ShortHexString.Replace(" ", @"[-\. _]")})|({x.HexString.Replace(" ", @"[-\. _]")})$"));
+        private static readonly SimpleTestCaseCollection<MockData, Example> getHexStringTestCases
+            = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.Bytes, $"^(?i)({x.ShortHexString.Replace(" ", @"[-\. _]")})|({x.HexString.Replace(" ", @"[-\. _]")})$"));
 
-        private static readonly SimpleTestCaseCollection parseHexStringTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.ShortHexString, x.Bytes));
+        private static readonly SimpleTestCaseCollection<MockData, Example> parseHexStringTestCases
+           = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.ShortHexString, x.Bytes));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.FF))]
@@ -234,11 +236,11 @@ namespace DataConverter.Core.Tests.Tests
 
         #region Ascii string
 
-        private static readonly SimpleTestCaseCollection getAsciiStringTestCases
-            = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.Bytes, x.AsciiString));
+        private static readonly SimpleTestCaseCollection<MockData, Example> getAsciiStringTestCases
+            = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.Bytes, x.AsciiString));
 
-        private static readonly SimpleTestCaseCollection parseAsciiStringTestCases
-           = new SimpleTestCaseCollection(new MockData(), x => new SimpleTestCase(x.AsciiString, x.Bytes));
+        private static readonly SimpleTestCaseCollection<MockData, Example> parseAsciiStringTestCases
+           = new SimpleTestCaseCollection<MockData, Example>(new MockData(), x => new SimpleTestCase(x.AsciiString, x.Bytes));
 
         [TestCase(nameof(MockData.Zero))]
         [TestCase(nameof(MockData.OctalBytes))]

@@ -150,7 +150,7 @@ namespace Challenger.Core.Converters
         public byte[] ResizeArray(byte[] bytes, int size)
         {
             var ret = new byte[size];
-            Array.Copy(bytes, ret, Math.Min(bytes.Length, size));
+            Array.Copy(bytes, ret, System.Math.Min(bytes.Length, size));
             return ret;
         }
 
